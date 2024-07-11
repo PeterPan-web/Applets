@@ -1,0 +1,48 @@
+
+<!--pages/order/downline.wxml-->
+<view class="w100">
+  <view class="p_all bg_white mt10 c6 l_h20 font_14">
+			<view class="order_item">订单状态：{{orderStatus}}</view>
+      <view  class="order_item">订单总额：{{total}}</view>
+      <view  class="order_item">实付金额：{{truePay}}</view>
+			<view  class="order_item">订单编号：{{orderNo}}</view>
+			<view  class="order_item">下单时间：{{orderDate}}</view>         
+    </view>
+    <view class="goods_detail">
+    <view class="picArea">
+         <image class="img_Circular" src="{{ImgUrl}}" mode="aspectFill"/>
+    </view>
+    <view class="sp_text">
+        <view class="proName">{{ProductName}}</view>
+                 <view class="priceShow">
+                    <view class="left">
+                       <view style='display:flex;flex-direction:row;padding-top:25rpx;'>
+                         <view class="priceType">{{priceType_Name}}</view>
+                         <view class="salePrice">：¥{{price}}*{{BuyCount}}{{unit}}</view>
+                       </view>
+                    </view>
+                 </view>
+            <view class="speci">{{specification}}</view>
+        
+    </view>
+    </view>
+  <view class="p_all">请认真填写好下面退货数量及原因</view>
+  <view class="p_all01 mt10 bg">
+    <!--<view class=" mt10">
+      <input class="inputStyle" name="input" bindinput="reasonInput" placeholder="退货原因" value="{{reason}}" />
+    </view>-->
+    <view class=" mt10">
+      <!-- <view class="c3">退货描述</view> -->
+      <textarea class="min_60 inputStyle" auto-height name="remark" placeholder="退款原因" bindinput="remarkInput" value="{{remark}}"/> 
+    </view>
+    <!--<view class=" mt10">
+      <view class="c3">图片凭证</view>
+      <button bindtap="uploadImgs">上传图片</button>
+    </view>-->
+  </view>
+  <view class="p_all01 mtt0">
+    <view class="btnGreen">
+      <button type="primary" id="btnPay" formType="submit" bindtap="submitReturnData">确定</button>
+    </view>
+  </view>
+</view>

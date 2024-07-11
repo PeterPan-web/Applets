@@ -1,0 +1,376 @@
+page {
+  background: #f3f3f3;
+}
+
+.pr {
+  flex: 2.6;
+  padding: 0 10rpx;
+  line-height: 44rpx;
+}
+
+.n {
+  margin-top: 20rpx;
+  font-size: 30rpx;
+  display: inline-block;
+  line-height: 40rpx;
+  font-weight: 900;
+  overflow: hidden;
+}
+
+.b {
+  margin-bottom: 15rpx;
+  font-size: 27rpx;
+  line-height: 30rpx;
+  color: #999;
+}
+
+.place {
+  margin-top: 8rpx;
+  font-size: 27rpx;
+  display: inline-block;
+  line-height: 30rpx;
+  color: #999;
+}
+
+.y {
+  font-size: 112rpx;
+  font-weight: 900;
+  color: #F08328;
+}
+
+.x {
+  color: #F08328;
+  font-size: 38rpx;
+  font-weight: 900;
+}
+
+.hh {
+  font-weight: 800;
+  color: #F08328;
+  flex: 1.3;
+  padding: 20rpx 0rpx;
+  text-align: center;
+  border-left: 1px dashed #ccc;
+}
+
+.hb {
+  width: 80%;
+  margin-top: 38rpx;
+  font-size: 40rpx;
+  padding: 18rpx;
+  border-radius: 4rpx;
+}
+
+.c {
+  font-size: 21rpx;
+  position: relative;
+  top: -73rpx;
+  left: 237rpx;
+  width: 400rpx;
+  color: #ccc;
+}
+
+.swiper-tab{  
+    width: 100%;  
+    border-bottom: 1px solid #eee;  
+    text-align: center;  
+    line-height: 80rpx;
+    background: #fff;  
+    position: fixed;
+    top: 0;  
+    z-index: 999;
+    }  
+.swiper-tab-list{  
+  font-size: 16px;  
+  display: inline-block;  
+  width: 30%;  
+  color: #666;  
+  }  
+.on{ 
+  color: #dd2727;  
+  border-bottom: 5rpx solid #dd2727;
+  }  
+  
+.swiper-box{ 
+  display: block; 
+  height: 100%; 
+  width: 100%; 
+  overflow: hidden; 
+  }  
+
+.clearbutton{
+    background: #fff; 
+    display: inline-block;
+    margin:3% 3% 2% 3%; 
+    color: #dd2727;
+    font-size: 14px;
+    width: 94%;
+}
+.shop{
+    background: aliceblue;
+    padding: 4%;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+.shop checkbox{ 
+    margin-top: 27px;
+    }
+.sh_slt{
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+    border-radius: 5px;
+    margin-right: 4%;
+    float: left;
+}
+.sp_text{
+    float: left;
+    line-height: 20px;
+    width: 100%;
+    text-align: left;
+    }
+.sp_tit{
+    width: 100%;
+    overflow: hidden;
+    font-size: 14px;
+}
+.sp_neb{
+    width: 100%;
+    overflow: hidden;
+    font-size: 12px;
+    color: #999;
+}
+.sp_jg{
+    width: 100%;
+    overflow: hidden;
+    font-size: 14px;
+    color: #fc0628;
+}
+.dle{
+    color: #999;
+    font-size: 12px;
+    float: right;
+}
+.dle image{
+    width: 18px;
+    height: 18px;
+    vertical-align: sub;
+}
+.jk_bottom{
+    position: fixed;
+    bottom: 0;
+    background: #fff;
+    width: 100%; 
+    display: inline-flex;
+    border-bottom: 1px solid #eee; 
+    font-size: 14px;
+    color: #999;       
+}
+.jk_bottom checkbox{
+    margin: 4% 0 4% 4%;    
+}
+.jk_bottom .heji{
+    margin-top: 5.5%;
+    width: 30%; 
+    text-align: right;   
+}
+.jk_bottom .all{
+    margin-top: 5.5%;
+    padding-left: 2%;  
+}
+.jk_bottom .js_button{
+    background: #dd2727;
+    float: right;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    width: 40%;
+    position: absolute;
+    right: 0;
+    line-height: 50px;
+}
+.blue{
+  color: #42b1ff;
+}
+.mr_5{
+    margin-right: 5px;
+}
+.img_pro{
+    width: 45px;
+    height: 45px;
+    background-color: #fff;
+    overflow: hidden;
+    border-radius: 5px;
+    margin-right: 1%;
+    margin-left: 1%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    float: left;
+}
+.Img_List{
+   display: flex;
+   flex-direction: column;
+   border-radius: 5px;
+   margin-right: 4%;
+}
+.Img_List_S{
+   display: flex;
+   flex-direction:row;
+}
+
+
+.quanTop{
+    clear: both;
+    height: 1px;
+    padding-top: 30px;
+}
+.quan{
+  width: 95%;
+  margin: 10px;
+  display: flex;
+  height: 200rpx;
+  border-bottom: 1rpx solid #f3f3f3;
+  border:2px solid #f3f3f3;
+  border-radius: 10rpx;
+}
+.qunLeft{
+  color:  #fff;
+  width: 30%;
+}
+.title_1{
+  margin-top: 35rpx;
+  margin-left: 10rpx;
+  font-size: 60rpx;
+  font-weight: 900;
+}
+.title_2{
+  margin-top: 20rpx;
+  font-size: 30rpx;
+  font-weight: 400;
+  margin-left: 10rpx;
+}
+.quanRight{
+  width: 70%;
+}
+.quanNo {
+  font-size: 22rpx;
+  position: relative;
+  margin-top: -10rpx;
+  left: 20rpx;
+  width: 400rpx;
+  color: #ccc;
+}
+.dateLimited {
+  font-size: 22rpx;
+  position: relative;
+  margin-bottom: 30rpx;
+  left: 20rpx;
+  width: 400rpx;
+  color: #ccc;
+}
+.button_cpType {
+  margin-top: 10px;
+  margin-left: 15px;
+  line-height: 50rpx;
+  text-align: center;
+  width:130rpx;
+  height: 50rpx;
+  color: white;
+  font-size: 28rpx;
+  font-weight: 200;
+  border-radius: 10%;
+  border: 0;
+}
+.youke_1 {
+  margin-top: 45px;
+  right: 140px;
+  display:  block;
+  position: fixed;
+  line-height: 50rpx;
+  text-align: center;
+  width:100rpx;
+  height: 50rpx;
+  color: white;
+  font-size: 28rpx;
+  font-weight: 200;
+  border-radius: 10%;
+  border: 0;
+  
+}
+
+.youke_2 {
+  margin-top: 45px;
+  right: 80px;
+  display:  block;
+  position: fixed;
+  line-height: 50rpx;
+  text-align: center;
+  width:100rpx;
+  height: 50rpx;
+  color: white;
+  font-size: 28rpx;
+  font-weight: 200;
+  border-radius: 10%;
+  border: 0;
+  
+}
+
+.button_Use {
+  margin-top: 35px;
+  right: 15px;
+  display:  block;
+  position: fixed;
+  line-height: 50rpx;
+  text-align: center;
+  width:100rpx;
+  height: 50rpx;
+  color: white;
+  font-size: 28rpx;
+  font-weight: 200;
+  border-radius: 10%;
+  border: 0;
+  
+}
+
+.brief{
+  margin-top: 10px;
+  margin-left: 5px;
+  font-size: 35rpx;
+  font-weight: 200;
+}
+.RTop{
+  display:flex;
+  flex-direction: row;
+   height: 80%;
+}
+.login-btn {
+  margin-top: 20rpx;
+  border: none;
+  height: 88rpx;
+  line-height: 88rpx;
+  background: #39C974;
+  color: #fff;
+  font-size: 11pt;
+  border-radius: 10rpx;
+}
+
+.login-btn_no {
+  margin-top: 40rpx;
+  border: none;
+  height: 88rpx;
+  line-height: 88rpx;
+  background: lightgrey;
+  color: #fff;
+  font-size: 11pt;
+  border-radius: 999rpx;
+}
+
+.login-btn::after {
+  display: none;
+}
+
+.login-btn.button-hover {
+  box-shadow: inset 0 5rpx 30rpx rgba(0,0,0,.15);
+}

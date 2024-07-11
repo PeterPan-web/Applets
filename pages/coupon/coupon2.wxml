@@ -1,0 +1,35 @@
+<view class="swiper-tab">
+  <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" data-otype="useno" bindtap="swichNav">报名中</view>
+  <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" data-otype="useno" bindtap="swichNav">待出行</view>
+  <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" data-otype="useyes" bindtap="swichNav">出行中</view> 
+  <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-current="3" data-otype="useout" bindtap="swichNav">历史行程</view>
+</view>
+<view class="quanTop"></view>
+
+<view class="orderDetails" wx:for="{{quan}}" wx:key="key">
+  <navigator url="../coupon/coupon_Show?quan_id={{item.quan_id}}">
+       <view class="quan">
+         <view class='qunLeft' style="background-image: url('{{item.bgUrl_qunLeft}}');background-size:100% 100%;">
+         <!-- <view class='title_1'>{{item.title_1}}</view>
+         <view class='title_2'>{{item.title_2}}</view> -->
+         </view>
+         
+         <view class='quanRight' style="background-image: url('{{item.bgUrl_qunRight}}');background-size:100% 100%;">
+           <view class='RTop'>
+              <view class="button_cpType" style='background-color: {{item.cpTypeBg}};'>{{item.quanType}}</view>
+              <view class='brief'>{{item.use_Place}}</view>
+              <view class="youke_1" style='background-color:{{item.cpTypeBg}};' wx:if="{{item.useStatus!='未使用'&&item.visitor1.length>0}}">{{item.visitor1}}</view>
+              <view class="youke_2" style='background-color:{{item.cpTypeBg}};' wx:if="{{item.useStatus!='未使用'&&item.visitor2.length>0}}">{{item.visitor2}}</view>
+              <!-- <navigator url="../coupon/coupon_Show?QuanId={{item.id}}">
+              <view class="button_Use" style='background-color:lightpink;' wx:if="{{item.quan_quanxian=='管理'&&item.useStatus=='未使用'}}">分配</view>
+              <view class="button_Use" style='background-color:lightpink;' wx:if="{{item.quan_quanxian=='管理'&&item.useStatus=='未使用'}}">使用</view>
+              </navigator> -->
+           </view>
+           <view class="quanNo">{{item.quanNo_name}}：{{item.quanNo}}</view>
+           <view class="dateLimited"  wx:if="{{item.useStatus=='未使用'&&item.start_time.length>0}}">{{item.dateLimited_name}}：{{item.start_time}}-{{item.end_time}}</view>
+           <view class="dateLimited"  wx:if="{{item.useStatus!='未使用'&&item.visitStart.length>0}}">{{item.dateLimited_name}}：{{item.visitStart}}-{{item.visitEnd}}</view>
+         </view>
+        
+       </view> 
+   </navigator>     
+</view>	

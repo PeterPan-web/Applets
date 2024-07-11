@@ -1,0 +1,116 @@
+<!--pages/userCenter/dingdan.wxml-->
+<view class="swiper-tab">
+  <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" data-otype="free" bindtap="swichNav">
+      流通({{tj_0}})
+  </view>
+  <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" data-otype="lock" bindtap="swichNav">
+      锁仓({{tj_1}})
+  </view> 
+  <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" data-otype="invest" bindtap="swichNav">
+      投资({{tj_2}})
+  </view>
+  <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-current="3" data-otype="welfare" bindtap="swichNav">
+      公益({{tj_3}})
+  </view>
+</view>
+<view class="c_t60"></view>
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight + 1000}}px" bindchange="bindChange">
+
+  <!-- 流通 -->
+  <swiper-item> 
+    <view class="search_no" wx:if="{{!orderList0.length}}">
+        <view class="font_14"><image class="scimg" src="/images/search_no.png"></image></view>
+        <text>暂无记录/(ㄒoㄒ)/~~</text>
+    </view>
+
+    <view class="shop df" wx:for="{{orderList0}}" wx:key="key"> 
+      <!--view class="Img_List">
+        <view class="Img_List_S"-->       
+          <image class="img_pro" src="{{item.img_mark}}"></image>
+        <!--/view>
+      </view-->  
+        <view class="df_1">            
+            <view class="sp_text">
+                <navigator url="../order/order_Detail?orderNo={{item.name}}" hover-class="changestyle">
+                <view class="sp_tit ovh1">{{item.name}}</view>
+                </navigator>
+                <view class="sp_neb">变动数量： <text class="sp_jg">{{item.amount}}</text> {{item.unit}}</view>
+                <view class="sp_neb">变动时间： {{item.timeupdate}}</view>
+            </view>
+        </view>
+    </view>
+  </swiper-item>
+
+  <!-- 锁仓 -->
+  <swiper-item>
+    <view class="search_no" wx:if="{{!orderList1.length}}">
+        <view class="font_14"><image class="scimg" src="/images/search_no.png"></image></view>
+        <text>暂无记录/(ㄒoㄒ)/~~</text>
+    </view>
+    <view class="shop df" wx:for="{{orderList1}}" wx:key="key"> 
+      <view class="Img_List">
+        <view class="Img_List_S">       
+          <image class="img_pro" src="{{item.img_mark}}"></image>
+        </view>
+      </view>  
+        <view class="df_1">            
+            <view class="sp_text">
+                <navigator url="../order/order_Detail?orderNo={{item.name}}" hover-class="changestyle">
+                <view class="sp_tit ovh1">{{item.name}}</view>
+                </navigator>
+                <view class="sp_neb">变动数量： <text class="sp_jg">{{item.amount}}</text> {{item.unit}}</view>
+                <view class="sp_neb">变动时间： {{item.timeupdate}}</view>
+            </view>
+        </view>
+    </view>
+  </swiper-item>
+
+  <!-- 投资 -->
+  <swiper-item>
+      <view class="search_no" wx:if="{{!orderList2.length}}">
+            <view class="font_14"><image class="scimg" src="/images/search_no.png"></image></view>
+            <text>暂无记录/(ㄒoㄒ)/~~</text>
+      </view>
+      <view class="shop df" wx:for="{{orderList2}}" wx:key="key"> 
+      <view class="Img_List">
+        <view class="Img_List_S">       
+          <image class="img_pro" src="{{item.img_mark}}"></image>
+        </view>
+      </view>  
+        <view class="df_1">            
+            <view class="sp_text">
+                <navigator url="../order/order_Detail?orderNo={{item.name}}" hover-class="changestyle">
+                <view class="sp_tit ovh1">{{item.name}}</view>
+                </navigator>
+                <view class="sp_neb">变动数量： <text class="sp_jg">{{item.amount}}</text> {{item.unit}}</view>
+                <view class="sp_neb">变动时间： {{item.timeupdate}}</view>
+            </view>
+        </view>
+    </view>
+  </swiper-item>
+
+  <!-- 公益 -->
+  <swiper-item>
+      <view class="search_no" wx:if="{{!orderList3.length}}">
+            <view class="font_14"><image class="scimg" src="/images/search_no.png"></image></view>
+            <text>暂无记录/(ㄒoㄒ)/~~</text>
+      </view>
+      <view class="shop df" wx:for="{{orderList3}}" wx:key="key"> 
+      <view class="Img_List">
+        <view class="Img_List_S">       
+          <image class="img_pro" src="{{item.img_mark}}"></image>
+        </view>
+      </view>  
+        <view class="df_1">            
+            <view class="sp_text">
+                <navigator url="../order/order_Detail?orderNo={{item.name}}" hover-class="changestyle">
+                <view class="sp_tit ovh1">{{item.name}}</view>
+                </navigator>
+                <view class="sp_neb">变动数量： <text class="sp_jg">{{item.amount}}</text> {{item.unit}}</view>
+                <view class="sp_neb">变动时间： {{item.timeupdate}}</view>
+            </view>
+        </view>
+    </view>
+  </swiper-item>
+  
+</swiper>

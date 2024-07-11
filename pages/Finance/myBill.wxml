@@ -1,0 +1,45 @@
+  <!--view class="sc mt10 df">
+        <view class="df_1 tc">
+          <navigator url="../Finance/myFinance" hover-class="none">
+          <view><image src="/images/use_ry.png"></image></view>
+          <text>账户余额</text>
+          </navigator>
+        </view>
+
+        <view class="df_1 tc">
+          <navigator url="../Finance/myBill" hover-class="none">
+          <view><image src="/images/use_sc.png"></image></view>
+          <text>我的账单</text>
+          </navigator>
+        </view>
+        <view class="df_1 tc">
+          <navigator url="../Finance/withDraw" hover-class="none">
+          <view><image src="/images/use_ry.png"></image></view>
+          <text>我的提现</text>
+          </navigator>
+        </view>
+        
+        <view class="df_1 tc">
+          <navigator url="../userCenter/myTree" hover-class="none">
+          <view><image src="/images/use_ry.png"></image></view>
+          <text>其它权益</text>
+          </navigator>
+        </view>
+    </view-->
+
+  <view class="table">
+        <view class="tr">
+            <view class="th">标题1</view>
+            <view class="th">标题2</view>
+            <view class="th">标题3</view>
+            <view class="th">标题4</view>
+            <view class="th">标题5</view>
+        </view>
+        <view class="tr" wx:for="{{billList}}">
+            <view class="td">{{msg1}}</view>
+            <view class="td">{{msg2}}</view>
+            <view class="td">{{msg3}}</view>
+            <view class="td">{{msg4}}</view>
+            <view class="td">{{msg5}}</view>
+        </view>
+  </view>

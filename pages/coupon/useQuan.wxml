@@ -1,0 +1,19 @@
+<view class="w100">	
+    <view class='parameter-wrap'>
+      <block wx:for="{{userList}}" wx:key="userList">
+      <view class="valueSort">
+       <image src="{{item.picUrl}}" class="{{item.checked ? 'checked1_Yes':'checked1_No'}}" data-staffbh='{{item.staffBH}}' bindtap='userListTap'>   {{item.staffName}}</image>
+      </view>
+      </block>
+    </view>
+
+	<view class="btnPay">
+		<view class="btnGreen">
+		<button type="primary" id="btnPay" formType="submit" bindtap="confirmUseQuan">确定</button>
+	  </view>
+	</view>
+
+</view>
+
+<view class="myToast" hidden="{{nullHouse}}">暂无有关信息</view>
+<view hidden='true' style='visible:false;'>{{QuanId}}</view>

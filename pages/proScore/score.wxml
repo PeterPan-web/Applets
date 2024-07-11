@@ -1,0 +1,43 @@
+<!-- index.wxml -->
+<view class="page__bd">
+     <view class="weui-loadmore"  wx:if="{{hidden}}">
+            <view class="weui-loading"></view>
+            <view class="weui-loadmore__tips">正在加载</view>
+     </view>
+     <view class="weui-loadmore weui-loadmore_line" wx:if='{{show}}'>
+            <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+      </view>
+</view>
+<view class="page">
+    <!--积分商品开始-->
+    <!-- <view class="user-block" wx:if="{{item.name=='proScore'}}">
+        <view class="menu_fill" style="background: {{item.cbg_bgcolor}};">
+            <view class="flex-grow-1 flex-row flex-y-center" style='display: flex;flex-direction: row;width:85%'>
+                 <image src="{{item.cbg_url}}" style="width: {{item.cbg_width}}rpx;height: {{item.cbg_height}}rpx;margin-right: 12rpx;margin-top:5rpx;"></image>
+                 <view style="font-size: 12pt;color: {{item.cbg_fontcolor}};margin-right: 16rpx">{{item.title}}</view>
+                 <view></view>
+            </view>
+            <navigator style='display: flex;flex-direction: row;font-size:26rpx;' url="{{item.url}}" wx:if="{{item.url.length>0}}">
+                <view style="margin-right: 14rpx">更多</view>
+                <image src="{{icoImgUrl.Index_menu_jiantou}}" style="width: 12rpx;height: 22rpx;margin-top:10rpx;"></image>
+            </navigator>
+        </view>
+    </view> -->
+    
+    <view class="cont">
+      <navigator  class="pr" url="../proDetail/proDetail?priceType=score&priceFrom={{pro.EScore_ExtraPay}}&productId={{pro.Id}}&fromId=0" hover-class="changestyle" wx:for="{{proScore}}" wx:for-item="pro" wx:key="key">
+        <image class="proPic_Score" src="{{pro.photo_x}}"></image>
+        <view class="proName_Score">{{pro.name}}</view>
+        <view style="line-height:50rpx;text-align:center;font-size: 15px;color:red;">
+            <text>{{pro.EScore_Scores}}{{pro.uint}} + {{pro.EScore_ExtraPay}}元</text>
+        </view>
+        <!-- <view style="display:flex;line-height:50rpx;color:#999">
+          <view class="guidePrice_Score">市场价:¥ {{pro.price_Guide}}</view>
+          <view class="renqi_Score" style="width:60%">已兑：{{pro.renqi}}</view>
+        </view> -->
+      </navigator>
+    </view>
+    <!--积分商品结束-->
+
+</view>
+  

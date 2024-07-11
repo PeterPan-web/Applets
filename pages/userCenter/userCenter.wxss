@@ -1,0 +1,377 @@
+/* pages/userCenter/userCenter.wxss */
+.page{
+padding: 0rpx 30rpx 0rpx 30rpx;
+
+}
+.userCard{
+  color: #fff;
+  background-image: linear-gradient(0deg, #f6d365 0%, #fda085 100%);
+  font-size: 30rpx;
+  font-weight: 300;
+}
+/* 展示信息 */
+.userinfo{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 2%;
+}
+/* 去登录 */
+.goLoginView{
+  display: flex;
+  justify-content: left;
+  padding: 30px 0px 70px 30px;
+  border-radius: 2%;
+  }
+.userinfo-CardTop{
+  width: 750rpx;
+  height: 300rpx;
+  display: flex;
+}
+.userinfo-avatar {
+  align-items: center;
+  display: block;
+  width: 100rpx;
+  height: 100rpx;
+  margin-top: 20px;
+  margin-left: 50rpx;
+  border-radius: 50%;
+  border:2px solid #fff;
+  box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
+}
+.mark {
+  margin-right: 30px;
+  margin-top: 60px;
+}
+.userinfo_CardNo{
+  margin-left: 50rpx;
+  margin-top: -100rpx;
+  border-radius: 4%;
+  color: #000;
+}
+.userinfo-left{
+  width: 25%;
+  align-items: rigth;
+}
+.userinfo-middle{
+  width: 65%; 
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+.userinfo-right{
+  width: 15%;
+  align-items: right;
+  margin-top: 30rpx;
+  margin-right: 30rpx;
+}
+.cardName{
+font-size: 18px;
+color: black;
+}
+.threeTop{
+  background-color: #39C974;
+}
+.userType{
+font-size: 26rpx;
+/* width: 180rpx; */
+height: 40rpx;
+color: #fff;
+margin-top: 15rpx;
+padding-left: 40rpx;
+border-radius: 20rpx;
+border:0px solid #666;
+background-color:#39C974;
+}
+.userType_Ico
+{
+  align-items: center;
+  display: block;
+  width: 40rpx;
+  height: 40rpx;
+  margin-top: -42rpx;
+  margin-left: -5rpx;
+  border-radius: 50%;
+  border:1px solid #fff;
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+.sc{
+  background: #fff;
+  width: 100%;
+  font-size: 12px;
+  line-height: 16px;
+  color: #666;
+  padding: 15rpx 0;
+  border-bottom: 1px solid #eee;
+}
+.sc image{
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+}
+.bte{
+  border-top: 1px solid #eee;
+}
+.userbox{
+  border-radius:30rpx;
+  margin-top: 20rpx;
+  margin-bottom: 24rpx;background-color: #ffffff;
+}
+.menuTitle{
+  border-radius:30rpx;
+  background: #fff;
+  width: 92%;
+  height: 50rpx;
+  font-size: 32rpx;
+  color: #000000;
+  padding: 10rpx 30rpx 2rpx 30rpx;
+  /* border: 1px solid #eee; */
+}
+
+.c33{
+  float: left;
+  color: #000
+}
+
+contact-button{
+  position: relative;
+  left:-50px;
+  opacity: 0;
+}
+
+.button {
+  line-height: 60rpx;
+  text-align: center;
+  width:240rpx;
+  height: 60rpx;
+  background-color: #FF8247;
+  color: white;
+  font-size: 30rpx;
+  font-weight: 200;
+  border-radius: 15;
+  border: 1;
+}
+.button_mobile {
+  line-height: 50rpx;
+  text-align: center;
+  width:120rpx;
+  height: 50rpx;
+  background-color:cadetblue;
+  color: white;
+  font-size: 30rpx;
+  font-weight: 200;
+  border-radius: 15;
+  border: 1;
+}
+.button_green {
+  line-height: 60rpx;
+  text-align: center;
+  width:240rpx;
+  height: 60rpx;
+  background-color:#39C974;
+  color: white;
+  font-size: 30rpx;
+  font-weight: 200;
+  border-radius: 15;
+  border: 1;
+}
+.mLeft {
+  width: 85%;
+  padding-top:10rpx;
+  font-size: 28rpx;
+}
+.mobile{
+  background: #fff;
+  width: 96%;
+  font-size: 15px;
+  color: #666;
+  padding: 2%;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  display:  flex;
+  flex-direction: row;
+}
+
+.sort{
+  text-align: center;
+  margin-bottom:10px;
+  background:#ffffff;
+  display:inline-block;
+  width:120rpx;
+  border:0px solid #EDEDED;
+  margin-left:35rpx;
+  margin-right:20rpx;
+}
+
+.sortIcon{
+  height:53rpx;
+  width:50rpx;
+  border-radius: 35%;
+  border:2px solid #fff;
+  /* box-shadow: 3px 3px 10px rgba(0,0,0,0.2); */
+  margin-left: 2px;
+}
+
+.sortName {
+  font-size: 25rpx;
+  color: #333;
+  width:100rpx;
+  line-height: 20px;
+  margin-left: 7rpx;
+  margin-top: -5px;
+  height: 18px;
+  text-align:center;
+  /* overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; */
+}
+
+.act-modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2001;
+    visibility: hidden;
+    opacity: 0;
+    transition: 200ms;
+}
+
+.act-modal.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.act-modal .act-modal-bg {
+    background: rgba(0,0,0,0.5);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.act-modal .act-modal-pic {
+    background: rgba(0,0,0,0.25);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.act-modal .act-modal-close image {
+    width: 50rpx;
+    height: 50rpx;
+    margin-top: 50rpx;
+}
+
+
+/*遮挡效果*/
+.mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+/* 设置遮罩内容样式 */
+.maskContent {
+  width: 80%;
+  background: #fff;
+  border-radius: 5px;
+  padding: 30px 0px 30px 0px;
+}
+.closeImg_righttop {
+  width: 50rpx;
+  height: 50rpx;
+  padding-top: -20rpx;
+  padding-right: 20rpx;
+}
+.maskContentBtn{
+  padding-top: 30rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.upperDisplayArea{
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: space-between;
+  border-bottom-left-radius: 20rpx;
+  border-bottom-right-radius: 20rpx;
+
+}
+.userCardpage{
+  background-color: white;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+  padding-top: 25rpx;
+  height: 650rpx;
+  padding-bottom: 30rpx;
+}
+.userCardBottom{
+  display: flex;
+  flex-wrap: wrap; /* 如果需要换行显示 */
+}
+.AreaBtn{
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1; 
+  z-index: 999;
+  background-color: white;
+}
+.Areaview{
+  padding: 10rpx;
+  text-align: center;
+}
+.grade-nav {
+  position: fixed;
+  top: 240rpx;
+  right: 10rpx;
+  font-size: 0;
+  padding: 20rpx;
+  border-radius: 999rpx;
+  z-index: 100;
+}
+.grade-nav image {
+  width: 240rpx;
+  height: 100rpx;
+}
+.login {
+  width: 90%;
+  padding-top:10rpx;
+  font-size: 35rpx;
+  margin-left:40rpx;
+  display:flex;
+  flex-direction:rows
+}
+.login input{
+  width:350rpx; 
+  background-color:lightgray
+}
+.certyCode{
+  margin-left: 20rpx;
+  width: 155rpx;
+  height: 40rpx;
+  background:darksalmon;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding-top: 5rpx;
+}

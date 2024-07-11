@@ -1,0 +1,77 @@
+<view class="container" style="marging-top:-30px;">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    
+    <!-- <view class="section">
+      <view class="fill_text">手  机：</view>
+      <view class='fill_input'>
+       <input type="text" class='fill' name="mobile" value='{{mobile}}' bindinput="Input_Mobile"  />
+      </view>
+    </view> -->
+    
+    <view class="wuliuSort" style="margin-left:200rpx;">
+      <view class="title">提现方式：</view>
+      <radio-group bindchange="TXSort">
+      <radio value="1" checked='true'>银行卡</radio>
+      <radio value="2" >微信零钱</radio>
+      </radio-group>
+    </view>
+    <view class="section">
+      <view class="fill_text">真实姓名：</view>
+      <view class='fill_input'>
+        <input type="text" class='fill' name="user_NameC" value='{{user_NameC}}' bindinput="Input_UserNameC" />
+      </view>
+    </view>
+    <view class="section" wx:if="{{tixianSort=='1'}}">
+      <view class="fill_text">身份证号：</view>
+      <view class='fill_input'>
+       <input type="text" class='fill' name="idNo" value='{{idNo}}' bindinput="Input_idNo" />
+      </view>
+    </view>
+    <!-- <view class="section" wx:if="{{tixianSort=='1'}}">
+      <view class="fill_text">开户行：</view>
+      <view class='fill_input'>
+       <input type="text" class='fill' name="bankName" value='{{bankName}}' bindinput="Input_BankName" />
+      </view>
+    </view> -->
+    <view class="section" wx:if="{{tixianSort=='1'}}">
+      <view class="fill_text">开户行：</view>
+      <picker bindchange="bindPickerChangeshengArr" value="{{shengIndex}}" range="{{shengArr}}" data-id="{{shengId[shengIndex]}}">
+        <view class="picker">{{shengArr[shengIndex]}}
+          <input hidden="true" name="province" value="{{shengArr[shengIndex]}}"/>
+        </view>
+      </picker>
+    </view>
+    <view class="section" wx:if="{{tixianSort=='1'}}">
+      <view class="fill_text">银行账号：</view>
+      <view class='fill_input'>
+       <input type="text" class='fill' name="bankNo" value='{{bankNo}}' bindinput="Input_BankNo" />
+      </view>
+    </view>
+    <view class="section">
+      <view class="fill_text">可提现：</view>
+      <view class='fill_input'>
+       <input type="text" class='fill_readonly' disabled name="balance" value='{{balance}}' />
+      </view>
+    </view>
+    <view class="section">
+      <view class="fill_text">提现金额：</view>
+      <view class='fill_input'>
+       <input type="text" class='fill' name="tixian" value='{{tixian}}' bindinput="Input_Tixian" />
+      </view>
+    </view>
+    <view class="section">
+      <view class="fill" style="margin-left:10rpx;">注：提现金额限于100的倍数,单日提现不能超过2000</view>
+      <view class="fill" style="margin-left:10rpx;">提现时间 上午9：30—11：30，下午1：00—3：00</view>
+    </view>
+    <view style='display:none'>
+        <input type="text" name="username" value='{{username}}'  bindinput="Input_UserName" />
+    </view>
+    <view>
+      <label></label>
+    </view>
+    <view class="btn-area">
+      <button formType="submit">提交申请</button>
+    </view>
+  </form>
+</view>
+

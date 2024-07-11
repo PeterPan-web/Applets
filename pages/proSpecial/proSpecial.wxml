@@ -1,0 +1,52 @@
+<!--pages/userCenter/shoucang.wxml-->
+<view class="page">
+    <view class="flex-row sort-bar">
+                <view bindtap="sortClick" class="flex-grow-1 flex-x-center flex-y-center sort-item {{sort==0?'active':''}}" data-sort="0">综合
+                </view>
+                <view bindtap="sortClick" class="flex-grow-1 flex-x-center flex-y-center sort-item {{sort==1?'active':''}}" data-sort="1">最新
+                </view>
+                <view bindtap="sortClick" class="flex-grow-1 flex-x-center flex-row sort-item {{sort==2?'active':''}}" data-default_sort_type="0" data-sort="2">
+                    <view class="flex-y-center">价格</view>
+                    <view class="flex-y-center sort-icon-box">
+                        <view>
+                            <view>
+                                <image class="sort-icon-up" src="http://api.lewon.net/web/statics/wxapp/images/icon-sort-up-active.png" wx:if="{{sort==2&&sort_type==0}}"></image>
+                                <image class="sort-icon-up" src="http://api.lewon.net/web/statics/wxapp/images/icon-sort-up.png" wx:else></image>
+                            </view>
+                            <view>
+                                <image class="sort-icon-up" src="http://api.lewon.net/web/statics/wxapp/images/icon-sort-down-active.png" wx:if="{{sort==2&&sort_type==1}}"></image>
+                                <image class="sort-icon-up" src="http://api.lewon.net/web/statics/wxapp/images/icon-sort-down.png" wx:else></image>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view bindtap="sortClick" class="flex-grow-1 flex-x-center flex-y-center sort-item {{sort==3?'active':''}}" data-sort="3">销量
+                </view>
+        </view>
+
+    <view class="search_no" wx:if="{{!productData.length}}">
+            <view class="font_14">
+              <image class="scimg" src="/images/search_no.png"></image>
+            </view>
+            <text>暂时还没有相关主题的商品/(ㄒoㄒ)/~~</text>
+    </view>
+
+    
+    <navigator class="pr" url="../proDetail/proDetail?priceType=member&priceFrom={{pro.price_sale}}&productId={{pro.Id}}&fromId=0" hover-class="changestyle" wx:for="{{productData}}"  wx:for-item="pro" wx:key="key">
+        <image class="proPic" src="{{pro.ImgUrl}}"></image>
+        <view class="proName">{{pro.ProductName}}</view>
+        <view style="display:flex;line-height:50rpx;">
+          <view class="price_Sale">¥ {{pro.price_sale}}</view>
+          <view class="price_Guide">¥{{pro.price_M}}</view>
+        </view>
+        <view style="display:flex;line-height:50rpx;">
+          <view class="unit">
+           单位：{{pro.unit}}</view>
+          <view class="num" style="width:60%">购买：{{pro.renqi}}</view>
+        </view>
+    </navigator>   
+      
+
+</view>
+
+

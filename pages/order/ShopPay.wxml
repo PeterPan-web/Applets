@@ -1,0 +1,158 @@
+<!--pay.wxml-->
+<view class="w100">
+		<view class="df proList" wx:for="{{productData}}">
+			<image class="img_Circular"  src="{{item.ImgUrl}}"></image>
+      <view class="sp_text">
+            <view class="proName">{{item.ProductName}}</view>
+            <view class="priceShow">
+                    <view class="left" wx:if="{{priceType!='score'}}">
+                       <view class="salePrice">¥：{{item.price}}</view>
+                       <view class="score" wx:if="{{item.score_Deduct>0}}">积分可抵扣：-{{item.score_Deduct}}</view>
+                       <view class="score" wx:if="{{item.LC_Deduct>0}}">{{item.BName}}可抵扣：-{{item.LC_Deduct}}</view>
+                       <view class="score" wx:if="{{item.LC_Given>0}}">赠：{{item.LC_Given}}{{item.BName}}</view>
+                    </view>
+                    <view class="left" wx:if="{{priceType=='score'}}">
+                       <view class="salePrice">{{item.EScore_Scores}}积分 + ¥：{{item.price}}</view>
+                       <view class="score" wx:if="{{item.score_Deduct>0}}">积分可抵扣：-{{item.score_Deduct}}</view>
+                       <view class="score" wx:if="{{item.LC_Deduct>0}}">{{item.BName}}可抵扣：-{{item.LC_Deduct}}</view>
+                       <view class="score" wx:if="{{item.LC_Given>0}}">赠：{{item.LC_Given}}{{item.BName}}</view>
+                    </view>
+                    <view class="right">
+                       <view class="num_Change">
+                       <!-- 减号 -->
+                       <text class="{{minusStatuses[index]}}" data-index="{{index}}" bindtap="bindMinus" data-cartid="{{item.CartID}}">-</text>
+                       <!-- 数值 -->
+                       <input type="number" bindchange="bindManual" disabled="true" value="{{item.BuyCount}}" />
+                       <!-- 加号 -->
+                       <text class="normal" data-index="{{index}}" bindtap="bindPlus" data-cartid="{{item.CartID}}">+</text>
+                       </view> 
+                    </view>
+            </view>
+            <view class="speci">{{item.specification}}</view>
+      </view>
+		</view>		
+		
+    <view class="wuliuSort">
+      <view class="title">提货方式：</view>
+      <radio-group bindchange="wuliuSort">
+      <radio value="1" checked='true'>物流</radio>
+      <radio value="2">自提</radio>
+      </radio-group>
+    </view>
+
+    <view wx:if="{{tihuo_wuliu}}">
+		<view class="p_all bg_white mt10 font_14 Address" wx:if="{{add_have}}">
+		  <navigator url="../address/Address_List?orderNo={{cartId}}&cartId={{cartId}}&from1=order&from2=ShopPay" hover-class="none">
+			<view class="df" data-Addid="{{address.id}}">
+				<view class="df_1 c6">
+				  <view class="l_h20">收货人：{{address.name}}<text class="fl_r mr10">{{address.tel}}</text></view>
+				  <view class="l_h20 mt5">地址：{{address.address_xq}}</view>
+				</view>
+				<image class="x_right mt15" src="/images/x_right.png"></image>			
+			</view>
+			</navigator>
+		</view>
+		<view class="p_all bg_white mt10 font_14" wx:else>
+		  <navigator url="../address/Address_Add?orderNo={{cartId}}&from1=order&from2=ShopPay" hover-class="none">
+			 <view class="df">添加收货地址		
+			 </view>
+			</navigator>
+		</view>
+		</view>	
+
+    <view class="buySort"  wx:if="{{isBuySort=='复购0'&&priceType!='score'}}">
+    <view class="title">购买方式：</view>
+      <radio-group bindchange="buySort">
+      <radio value="1" checked='true'>复购</radio>
+      <radio value="2">代人购买</radio>
+      </radio-group>
+    </view>
+
+    <view class="p_all bg_white mt10 font_14 Address" wx:if="{{buy_tuijian}}">
+      <view class="section">
+        <view class="fill_text">姓  名：</view>
+        <view class='fill_input' style="background-color: beige;width:50%;">
+          <input type="text" class='fill' name="buyer_Name" value='{{buyer_Name}}' bindinput="Input_buyer_Name" />
+        </view>
+      </view>
+      <view class="section">
+        <view class="fill_text">手  机：</view>
+        <view class='fill_input' style="background-color: beige;width:50%;">
+         <input type="text" class='fill' name="buyer_Mobile" value='{{buyer_Mobile}}' bindinput="Input_buyer_Mobile"  />
+        </view>
+      </view>
+    </view>
+
+			
+
+    <view class="xuan" wx:if="{{quan!=''}}" >
+	    <view class="hui">可使用优惠券：</view>
+      <!--设置监听器，当点击radio时调用-->
+      <radio-group bindchange="listenerRadioGroup" class="hui">
+      <!--label通常与radio和checkbox结合使用-->
+      <label style="display: flex" wx:for="{{quan}}" class="xuan" bindtap="getvou" data-id="{{item.quan_id}}" data-quanid="{{item.quan_id}}" data-price="{{item.amount}}">
+      <radio value="{{item.quan_id}}" />满{{item.full_money}}立减{{item.amount}}元
+      </label>
+      <label style="display: flex" class="xuan" bindtap="getvou" data-id="0" data-price="0">
+      <radio value="0"/>不使用优惠券
+      </label>
+      </radio-group>
+    </view>
+
+
+		<view class="p_all bg_white mt10 font_14 memo">
+			<textarea class="min_60" auto-height name="remark" placeholder="备注" bindinput="remarkInput" value="{{remark}}"/> 
+		</view>
+
+    <view class="xuan" wx:if="{{mobile_tj.length==11}}">
+       <view class="zhifu_Item">推 荐 号：<span class="font_20">{{mobile_tj}}</span>
+       </view>
+    </view>
+
+    <view class="xuan">
+       <view class="zhifu_Item">总 金 额：<span class="font_20">¥ {{total}}</span>
+         <view class="LC" wx:if="{{lc_givenTJ>0}}">  赠：{{lc_givenTJ}}{{BName}}</view>
+       </view>
+    </view>
+    
+    <view class="xuan" wx:if="{{tj_discount>0}}" >
+       <view class="zhifu_Item">折扣优惠：<span class="font_20">¥ {{tj_discount}}</span></view>
+    </view>
+    
+    <!-- <view class="xuan" wx:if="{{pay_score>0}}" >
+       <view class="zhifu_Item">积分抵扣：<span class="font_20 red">¥ {{pay_score}}</span>
+         <view class="zhifu_Item_2">[可用：{{score_balance}}]</view>
+       </view>
+    </view> -->
+
+    <view class="xuan" wx:if="{{pay_score>0}}" >
+       <view class="zhifu_Item">兑换：<span class="font_20 red">{{pay_score}}积分</span>
+         <view class="zhifu_Item_2">[可用积分：{{score_balance}}]</view>
+       </view>
+    </view>
+
+    <view class="xuan" wx:if="{{balance>0&&pay_balance>0}}" >
+       <view class="zhifu_Item">余额支付：<span class="font_20 red">¥ {{pay_balance}}</span>
+         <view class="zhifu_Item_2">[余额：{{balance}}]</view>
+       </view>
+    </view>
+    <view class="xuan" wx:if="{{pay_Quan>0}}" >
+       <view class="zhifu_Item">优惠折扣：<span class="font_20 red" style="text-decoration:line-through;">¥ {{pay_Quan}}</span></view>
+    </view>
+    <view class="xuan" wx:if="{{pay_WX>0}}" >
+       <view class="zhifu_Item">微信支付：<span class="font_20 red">¥ {{pay_WX}}</span></view>
+    </view>
+
+
+  <view class="p_all mt10">
+		<view class="btnGreen">
+			<button class="wx_pay_submit" wx:if="{{pay_WX>0}}" type="primary" id="wxPay" disabled="{{btnDisabled}}" formType="submit" bindtap="gotoPay_WX">微信支付</button>
+
+      <button class="wx_pay_submit" wx:if="{{pay_WX==0&&pay_balance>0}}" type="primary" id="wxPay" disabled="{{btnDisabled}}" formType="submit" bindtap="gotoPay_YE">余额支付</button>
+
+      <button class="wx_pay_submit" wx:if="{{pay_WX==0&&pay_balance==0&&pay_score>0&&score_balance>=pay_score}}" type="primary" id="wxPay" disabled="{{btnDisabled}}" formType="submit" bindtap="gotoPay_Score">积分支付</button>
+			
+		</view>
+	</view>
+
+</view>

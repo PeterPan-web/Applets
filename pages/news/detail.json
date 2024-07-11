@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "资讯.活动",
+  "usingComponents": {
+     "txv-video": "plugin://tencentvideo/video"
+  }
+}

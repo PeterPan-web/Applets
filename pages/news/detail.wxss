@@ -1,0 +1,77 @@
+.page_detail{
+    display: block;
+    width: 19rem;
+    margin:0 auto;
+    background-color: #fff;
+    margin-top:0.4rem;
+}
+.detail_title{
+    font-size:36rpx;
+    line-height: 50rpx;
+    font-weight: 500;
+    word-break:break-word;
+    width: 100%;
+    text-align: left;
+}
+.article_icon{
+width: 30px;
+height: 30px;
+margin-left: 5px;
+}
+.article_desc{
+    margin: 30rpx 0;
+}
+.article_content{
+    font-size: 28rpx;
+    color: #333;
+    line-height: 42rpx;
+    word-break: break-all;
+    text-indent: 2em;
+}
+.detail_relation{
+    margin-top: 60rpx;
+    padding-bottom: 30rpx;
+}
+.relation_title{
+    border-left: 6rpx solid #d81e06;
+    padding-left: 30rpx;
+    margin-bottom: 30rpx;
+}
+
+.wxParse-img{
+    width: 20rem;
+    height: 8rem;
+    display:block;
+}
+
+.article_desc{
+    padding-bottom: 30rpx;
+    border-bottom: 1rpx solid #ccc;
+}
+.slide-image{ 
+  width: 100%; 
+  height: 100%;
+}
+.user-block {
+    margin: 10rpx 0;
+}
+.user-block-1 .flex-grow-0 {
+    width: 300rpx;
+}
+.video{
+  box-sizing: border-box;
+  width:750rpx;
+  height:400rpx;
+  position:relative;
+}
+.video-play {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100rpx;
+    height: 100rpx;
+    margin-top: -50rpx;
+    margin-left: -50rpx;
+    z-index: 99;
+}
+@import "../../wxParse/wxParse.wxss";

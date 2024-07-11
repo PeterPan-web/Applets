@@ -1,0 +1,356 @@
+/* pages/cart/cart.wxss */
+.page {
+  font-family: '微软雅黑';
+  background-color: #F0F4F7;
+}
+.clearbutton{
+    background: #fff; 
+    display: inline-block;
+    margin:3% 3% 2% 3%; 
+    color: #FF8247;
+    font-size: 14px;
+    width: 94%;
+}
+.shop{
+    background: #fff;
+    padding: 4%;
+    margin: 2px;
+    border:1px solid white;
+    border-radius: 10rpx;
+}
+.shop checkbox{ 
+    margin-top: 27px;
+}
+.check{
+  margin-top: 30px;
+}
+.img_Circular{
+    width: 120rpx;
+    height: 120rpx;
+    overflow: hidden;
+    border-radius: 5px;
+    margin-left: 3%;
+    float: left;
+    border:1px solid #fff;
+    box-shadow: 3px 3px 15px rgba(0,0,0,0.2);
+}
+.treeList{
+    margin-left: 2%;
+    padding-left: 15rpx;
+    width: 350rpx;
+    height: 150rpx;
+    }
+.proName{
+    width: 100%;
+    overflow: hidden;
+    font-size: 16px;
+    height: 50rpx;
+    margin-top: -5rpx;
+}
+.salePrice{
+    width: 100%;
+    overflow: hidden;
+    font-size: 14px;
+    color: #FF8247;
+}
+.score{
+    width: 100%;
+    overflow: hidden;
+    font-size: 22rpx;
+    margin-top: 5rpx;
+}
+.tj{
+  width: 100%;
+  overflow: hidden;
+  font-size: 25rpx;
+  margin-top: 5rpx;
+  height: 50rpx;
+}
+.priceShow{
+  display:  flex;
+  flex-direction:column;
+  background-color:#FFFCF9;
+  height: 150rpx;
+  border-radius:10rpx;
+}
+.priceType{
+  width: 90rpx;
+  height: 30rpx;
+  padding: 1rpx;
+  font-size: 20rpx;
+  background-color: white;
+  color: red;
+  border:1px solid red;
+  border-radius: 8rpx;
+}
+.left{
+  display:  flex;
+  flex-direction: column;
+  width: 300rpx;
+}
+.speci{
+    width: 100%;
+    overflow: hidden;
+    font-size: 14px;
+}
+.sp_neb{
+    width: 100%;
+    overflow: hidden;
+    font-size: 12px;
+    color: #999;
+}
+.dle{
+    color: #999;
+    
+    font-size: 12px;
+    float: right;
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+}
+.dle image{
+    width: 18px;
+    height: 18px;
+    vertical-align: sub;
+}
+.jk_bottom{
+    position: fixed;
+    bottom: 0;
+    background: #fff;
+    width: 100%; 
+    display: inline-flex;
+    border-bottom: 1px solid #eee; 
+    font-size: 14px;
+    color: #999;       
+}
+.jk_bottom checkbox{
+    margin: 4% 0 4% 4%;    
+}
+.jk_bottom .heji{
+    margin-top: 5.5%;
+    width: 30%; 
+    text-align: right;   
+}
+.jk_bottom .all{
+    margin-top: 5.5%;
+    padding-left: 2%;  
+}
+.jk_bottom .js_button{
+    background: #FF8247;
+    float: right;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    width: 40%;
+    position: absolute;
+    right: 0;
+    line-height: 50px;
+}
+.bottom_clear{
+    clear: clear;
+    height: 1px;
+    margin-top: 60px;
+}
+
+/*外部容器*/
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+} 
+ /*复选框样式*/
+.carts-list icon {
+  margin-top: 60rpx;
+  margin-right: 20rpx;
+}
+/*整体列表*/
+.carts-list {
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx 40rpx;
+  background: #fff;
+}
+ 
+/*每行单元格*/
+.carts-item {
+  display: flex;
+  flex-direction: row;
+  height:150rpx;
+  /*width属性解决标题文字太短而缩略图偏移*/
+  width:100%;
+  border-bottom: 1px solid #eee;
+  padding: 30rpx 0;
+}
+ 
+/*左部图片*/
+.carts-image {
+  width:150rpx;
+  height:150rpx;
+}
+ .kong{
+  width:200rpx;
+  height:200rpx;
+ }
+ 
+/*右部描述*/
+.carts-text {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+ 
+/*右上部分标题*/
+.carts-title {
+  margin: 10rpx;
+  font-size: 28rpx;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  width: 400rpx;
+} 
+/*右下部分价格与数量*/
+.carts-subtitle {
+  font-size: 25rpx;
+  color:darkgray;
+  padding: 0 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+}
+/*价格*/
+.carts-price {
+  color: #f60;
+}
+/*底部按钮*/
+.footer_upgrade {
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  bottom: 0;
+  border-top: 1px solid #eee;
+  background: lightgray;
+  z-index:999;
+}
+.button_fonfirm {
+  width:180rpx;
+  line-height: 50rpx;
+  text-align: center;
+  height: 50rpx;
+  background-color: khaki;
+  color: hotpink;
+  font-size: 30rpx;
+  font-weight: 700;
+  border-radius: 0;
+  border: 0;
+  margin-top: 15rpx;
+  margin-left: 5rpx;
+}
+.carts-footer {
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  bottom: 0;
+  border-top: 1px solid #eee;
+  background: #ffffff;
+  z-index:999;
+}
+/*复选框*/
+.carts-footer icon {
+  margin-left: 20rpx;
+  margin-top: 15rpx;
+  color: #fff;
+}
+/*全选字样*/
+.carts-footer text {
+  font-size: 30rpx;
+  margin-left: 12rpx;
+  margin-top: -10rpx;
+  line-height: 10rpx;
+}
+/*立即结算按钮*/
+.button_Checkout {
+  line-height: 80rpx;
+  text-align: center;
+  width:200rpx;
+  height: 80rpx;
+  background-color: #FF8247;
+  color: white;
+  font-size: 36rpx;
+  font-weight: 700;
+  border-radius: 0;
+  border: 0;
+  margin-right: 0rpx;
+}
+.button_del {
+  line-height: 80rpx;
+  text-align: center;
+  width:140rpx;
+  height: 80rpx;
+  background-color: khaki;
+  color: hotpink;
+  font-size: 36rpx;
+  font-weight: 700;
+  border-radius: 0;
+  border: 0;
+  margin-right: 0rpx;
+}
+.num_Change {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0rpx;
+  padding-right: 0rpx;
+}
+.num_Change text {
+  background-color: #f2f2f2;
+  margin: 5px 0;
+  width: 26px;
+  height: 26px;
+  line-height: 26px;
+  text-align: center;
+  font-weight: 900;
+  color: #939393;
+  border-radius:6rpx; 
+  border:1px solid #fff;
+}
+.num_Change input {
+  width: 30px;
+  height: 25px;
+  text-align: center;
+  border-radius:6rpx; 
+  border-top: 1px solid #f2f2f2;
+  border-bottom: 1px solid #f2f2f2
+}
+.modal-close{
+    margin-left:200rpx ;
+    padding: 20px 0;  color: #939393;
+}
+.page{ 
+    padding-bottom: 60rpx;
+}
+.reds{
+    color: red;
+}
+.pp{
+  text-align: center;
+  margin-top:264rpx; 
+}
+.cla{
+    font-family: '微软雅黑';
+    color: #ccc;
+}
+.upgrade {
+  margin-top:10rpx;
+  margin-left:55rpx;
+  font-size:15rpx;
+}
+

@@ -1,0 +1,38 @@
+<!--pages/cart/cart.wxml-->
+<view class="page" style="display: flex;flex-direction: column;">
+<!--购物车开始-->
+<view style="width: 100%;display: flex;flex-direction: row;">
+  <image style="width: 80rpx;height:70rpx;margin-left:20rpx" src="/images/back.png" mode="aspectFill" wx:if="{{curUserName!=userName_Top}}" bindtap="goBack"/>
+  <view style="margin-left: 200rpx;">个人：{{self_tj}}</view><view style="margin-left: 240rpx;">团队：{{market_tj}}</view>
+</view>
+
+<view wx:for="{{carts}}" wx:key="key" >
+  <view class="shop df" data-cur="{{item.userName}}" data-parent="{{item.userParent}}" data-count="{{item.zt_count}}"  bindtap="goView">
+    <image class="img_Circular" src="{{item.headpic}}" mode="aspectFill"/>
+    <view class="treeList">
+        <view class="priceShow">
+          <view class="proName">{{item.user_NameC}}({{item.user_type}})</view>
+          <view class="priceType0">{{item.user_mobile}}</view>
+          <view class="score" >{{item.regTime}}</view>
+        </view>
+    </view>
+    <view style="margin-top: -20rpx;margin-left: 20rpx;width:200rpx">
+        <view class="tj" >队员:{{item.zt_count}} 个</view>
+        <view class="tj" >个人:{{item.self_tj}}</view>
+        <view class="tj" >团队:{{item.market_tj}}</view>
+    </view>
+  </view>
+</view> 
+<view class="container carts-list" wx:if="{{carts==''}}">
+    <view class="pp">
+         <image class="kong" src="../../images/cart.jpg" mode="aspectFill"/>
+         <view class="cla">没有数据</view>
+    </view>
+</view>
+<!--空购物车结束-->
+
+<!--底部结束-->
+
+
+</view>
+

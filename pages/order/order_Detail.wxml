@@ -1,0 +1,102 @@
+<!--pages/order/detail.wxml-->
+<view class="page">
+		<view class="p_all bg_white mt10 c6 l_h20  font_14">
+			<view >订单状态：<text class="red">{{orderStatus}}</text></view>
+      <view wx:if="{{total>0}}">订单总额：<text class="red">{{total}}</text></view>
+      <view wx:if="{{truePay>0}}">实付金额：<text class="red">{{truePay}}</text></view>
+      <view wx:if="{{money_refund>0}}">退款金额：<text class="red">{{money_refund}}</text></view>
+			<view >订单编号：{{orderNo}}</view>
+			<view class="mt10">下单时间：{{orderData.orderDate}}</view> 
+      <view >物流公司：{{orderData.LogisticsLtd}}</view>
+			<view class="mt10" style="display: flex;flex-direction: row;">物流单号：{{orderData.LogisticsNo}}<view bind:tap="doCopyNo" class="copy">复制</view></view>         
+		</view>
+    <!--view class="p_all bg_white mt10 font_14">
+			<textarea class="min_60" auto-height name="remark" disabled="{{true}}" placeholder="订单备注" value="{{orderData.remark?orderData.remark:'未备注'}}"/> 
+		</view-->	   
+
+
+<!--购物车开始-->
+<view class="shop" wx:for="{{carts}}" wx:key="key">
+  <view class="goods_detail"> 
+    <!--勾开始-->
+    <!-- <view class='check' wx:if="{{orderStatus=='待付款'}}">
+        <icon wx:if="{{item.selected}}" type="success_circle" size="20" bindtap="bindCheckbox" data-index="{{index}}"/>
+         <icon wx:else type="circle" size="20" bindtap="bindCheckbox" data-index="{{index}}"/>
+    </view> -->
+    <navigator class="picArea" url="../proDetail/proDetail?priceType={{item.priceType}}&priceFrom={{item.price}}&productId={{item.ProID}}">
+         <image class="img_Circular" src="{{item.ImgUrl}}" mode="aspectFill"/>
+    </navigator>
+    <!--勾结束-->
+    <view class="sp_text">
+        <navigator url="../proDetail/proDetail?priceType={{item.priceType}}&priceFrom={{item.price}}&productId={{item.ProID}}">
+            <view class="proName">{{item.ProductName}}</view>
+        </navigator>    
+                 <view class="priceShow">
+                    <view class="left">
+                       <view style='display:flex;flex-direction:row;padding-top:25rpx;'>
+                         <view class="priceType">{{item.priceType_Name}}</view>
+                         <view class="salePrice" wx:if="{{item.price>0}}">：¥{{item.price}}</view>
+                         <view class="salePrice" wx:if="{{item.EScore_Scores>0}}">：{{item.EScore_Scores}}积分</view>
+                       </view>
+                       <view class="score" wx:if="{{item.score_Deduct>0}}">积分可抵扣：{{item.score_Deduct}}</view>
+                    </view>
+                    <view class="right">
+                       <view class="num_Change" style="width:200rpx;">
+                       <input type="number" style="background:lightgray;width:100rpx;" data-index="{{index}}"  data-cartid="{{item.CartID}}" bindchange="bindManual" value="{{item.buyCount}}" />
+                       </view> 
+                    </view>
+                 </view>
+          
+    </view>
+  </view>
+
+
+</view> 
+<!--购物车结束-->
+
+<!--空购物车开始-->  
+<view class="container carts-list" wx:if="{{carts==''}}">
+    <view class="pp">
+         <image class="kong" src="../../images/cart.jpg" mode="aspectFill"/>
+         <view class="cla">购物车还是空的</view>
+    </view>
+</view>
+<!--空购物车结束-->
+
+<!--底部开始-->
+<view class="footer_upgrade" wx:if="{{upgrade_ok=='confirm'&&((user_type=='会员'&&total_vip>=config.upgrade_CK)||user_type=='创客'&&total_vip<config.upgrade_LS&&total>0&&(config.upgrade_diff-total_vip)>0)}}">
+    <text style="margin-top:20rpx;margin-left:20rpx;">推荐人手机号：</text>
+    <input type="text" name="mobile_tj" value="{{mobile_tj}}" style="background:lightpink;width:240rpx;margin-top:20rpx;"  bindinput="Input_mobile_tj" />
+    <button class="button_fonfirm" bindtap='bindCheckout_up'>确认升级</button>
+</view>
+<view class="carts-footer">
+   <view style='width:60%' wx:if="{{orderStatus == '待付款'}}" >
+        <view style="margin-top:0rpx;margin-left:20rpx;">
+        <text >合计</text>
+        <text class="reds" wx:if="{{truePay>0}}">{{truePay}}</text>
+        <text class="reds" wx:if="{{scorePay>0}}">{{scorePay}}积分</text>
+        </view>
+        <text style='font-size:16rpx;' wx:if="{{score_Deduct>0}}">积分可抵扣:</text>
+        <text style='font-size:22rpx;' wx:if="{{score_Deduct>0}}">{{score_Deduct}}元</text>
+
+        <text style='font-size:20rpx;' wx:if="{{EXScoreTJ>0}}">需要:</text>
+        <text style='font-size:22rpx;' wx:if="{{EXScoreTJ>0}}">{{EXScoreTJ}}{{BName}}</text>
+
+        <text style='font-size:20rpx;' wx:if="{{lc_givenTJ>0}}">赠:</text>
+        <text style='font-size:20rpx;' wx:if="{{lc_givenTJ>0}}">{{lc_givenTJ}} LC</text>
+   </view>
+   <view  style='width:60%' wx:else>
+        <text >合计</text>
+        <text class="reds">{{total}}</text>
+        <text style='font-size:16rpx;' wx:if="{{score_Deduct>0}}">积分可抵扣:</text>
+        <text style='font-size:22rpx;' wx:if="{{score_Deduct>0}}">{{score_Deduct}}元</text>
+   </view>
+   <view style="width:50%;background:red;display:flex;flex-direction:row;" wx:if="{{orderStatus == '待付款'}}">
+     <view class="button_Checkout" bindtap='gotoShopPay' wx:if="{{truePay>0}}">立即结算</view>
+     <view class="button_Checkout" bindtap='gotoShopPay'  wx:if="{{scorePay>0}}">立即兑换</view>
+   </view>
+</view>
+<!--底部结束-->
+
+
+</view>

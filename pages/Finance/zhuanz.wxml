@@ -1,0 +1,69 @@
+<view class="container" style="marging-top:-30px;">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="section">
+      <view class="fill_text">账户姓名：</view>
+      <view class='fill_input'>
+        <input type="text" class='fill_readonly' name="user_NameC" value='{{user_NameC}}'  />
+      </view>
+    </view>
+    <view class="section">
+      <view class="fill_text">可转账：</view>
+      <view class='fill_input'>
+       <input type="text" class='fill_readonly' disabled name="balance" value='{{balance}}' />
+      </view>
+    </view>
+    <view class="section">
+      <view class="fill_text">转账金额：</view>
+      <view class='fill_input'>
+       <input type="text" class='fill' name="zhuanz" value='{{zhuanz}}' bindinput="Input_zhuanz" />
+      </view>
+    </view>
+    <view class="section">
+      <view class="fill_text">收款人编号：</view>
+      <view class='fill_input' style="display: flex;flex-direction: row;">
+       <input type="text" class='fill' style="width:300rpx;" name="mobile_Receive" value='{{mobile_Receive}}' bindinput="Input_mobile_Receive"  />
+       <image class="searchcion" bindtap="searchUserData" src="/images/search.png"></image>
+       <!-- <button bindtap="doSearch"></button> -->
+      </view>
+    </view>
+    <view class="section">
+      <view class="fill_text">收款人姓名：</view>
+      <view class='fill_input'>
+        <input type="text" name="fill_readonly" value='{{user_Receive}}' bindinput="Input_user_Receive" />
+      </view>
+    </view>
+    <view class="section">
+      <view class="fill_text">转账密码：</view>
+      <view class='fill_input'>
+        <input type="password" class='fill' name="pwdPay" bindinput="Input_pwdPay" />
+      </view>
+    </view>
+    <!-- <view class="section">
+      <view class="fill_text">验证手机：</view>
+      <view class='fill_input'>
+        <input type="text"  class='fill_readonly' name="mobile_hidden"  value="{{mobile_hidden}}" />
+      </view>
+    </view>
+    <view class="section">
+      <view class="fill_text">手机验证码：</view>
+      <view class='fill_input' style="display:flex;flex-direction:rows;">
+       <input type="text" class="fill" style="width:130rpx;" name="certyCode" value='{{certyCode}}' bindinput="Input_CertyCode"  />
+       
+       <view class="certyCode" bindtap="send" >{{text}}</view>
+      </view>
+    </view> -->
+    <view class="section">
+      <view class="fill" style="margin-left:10rpx;">注：转账金额限于100的倍数</view>
+    </view>
+    <view style='display:none'>
+        <input type="text" name="username" value='{{username}}' />
+    </view>
+    <view>
+      <label></label>
+    </view>
+    <view class="btn-area">
+      <button formType="submit">提交申请</button>
+    </view>
+  </form>
+</view>
+

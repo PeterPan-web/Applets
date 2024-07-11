@@ -1,0 +1,43 @@
+<!--pages/search/search.wxml-->
+<view class="page">
+<view class="search df">
+    <input class="df_1" placeholder="请输入你要曾创建的会员号" auto-focus focus="{{focus}}" value="{{searchValue}}" bindinput="searchValueInput"/>
+    <button bindtap="doSearch"><image class="searchcion" src="/images/search.png"></image></button>
+</view>
+<view style="display:flex;flex-direction:column" wx:if="{{productData.length>0}}">
+    <view><text >会员号：{{username}}</text></view>
+    <view><text >会员名：{{user_namec}}[{{uid}}]</text></view>
+    <view><text >级别：{{user_type}}</text></view>
+</view>
+<view class="btn-area">
+    <button  bindtap="doSwitch">确认切换</button>
+</view>
+<!-- <view class="search_no" wx:if="{{!searchValue && !productData.length}}">
+    <view class="font_14"><image class="scimg" src="/images/search_no.png"></image></view>
+    <text wx:if="{{count_search==0}}">没有找到您要的会员信息/(ㄒoㄒ)/~~</text>
+</view> -->
+
+    <!-- <view class="orderDetails" wx:for="{{productData}}" wx:key="key">
+    <navigator url="../coupon/{{item.url}}?quan_id={{item.quan_id}}">
+       <view class="quan">
+         <view class='qunLeft' style="background-image: url('{{item.bgUrl_qunLeft}}');background-size:100% 100%;">
+         <view class='title_1'>{{item.title_1}}</view>
+         <view class='title_2'>{{item.title_2}}</view>
+         </view>
+         
+         <view class='quanRight' style="background-image: url('{{item.bgUrl_qunRight}}');background-size:100% 100%;">
+             <view style="display:flex;flex-direction:row">
+             <view class="button_cpType" style='background-color: {{item.cpTypeBg}};'>{{item.quanType}}</view>
+             <view class='brief'>{{item.use_Place}}</view>
+           </view>
+           <view class="quanUseName" style='background-color:{{item.cpTypeBg}};' wx:if="{{item.useStatus!='未投放'}}">{{item.useName}}</view>
+           <view class="quanNo">{{item.quanNo_name}}：{{item.quanNo}}</view>
+           <view class="dateLimited"  wx:if="{{item.useStatus=='未使用'&&item.useStatus!='未投放'}}">{{item.dateLimited_name}}：{{item.start_time}}-{{item.end_time}}</view>
+           <view class="dateLimited"  wx:if="{{item.useStatus!='未使用'&&item.useStatus!='未投放'}}">{{item.dateLimited_name}}：{{item.visitStart}}-{{item.visitEnd}}</view>
+         </view>
+        
+       </view> 
+   </navigator>     
+   </view> -->
+
+</view>

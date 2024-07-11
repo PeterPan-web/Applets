@@ -1,0 +1,107 @@
+<!--pages/cart/cart.wxml-->
+<view class="page">
+<!--购物车开始-->
+<view class="shop df" wx:for="{{carts}}" wx:key="key">
+    <!--勾开始-->
+    <view class='check'>
+        <icon wx:if="{{item.selected}}" type="success_circle" size="20" bindtap="bindCheckbox" data-index="{{index}}"/>
+         <icon wx:else type="circle" size="20" bindtap="bindCheckbox" data-index="{{index}}"/>
+    </view>
+    <view>
+        <navigator url="../proDetail/proDetail?priceType={{item.priceType}}&priceFrom={{item.price}}&productId={{item.ProID}}">
+         <image class="img_Circular" src="{{item.ImgUrl}}" mode="aspectFill"/>
+        </navigator>
+    </view>
+    <!--勾结束-->
+    <view class="sp_text">
+        <navigator url="../proDetail/proDetail?priceType={{item.priceType}}&priceFrom={{item.price}}&productId={{item.ProID}}">
+            <view class="proName">{{item.ProductName}}</view>
+        </navigator>    
+                 <view class="priceShow">
+                    <view class="left">
+                       <view style='display:flex;flex-direction:row;'>
+                         <view class="priceType">{{item.priceType_Name}}</view>
+                         <view class="salePrice">：¥{{item.price}}</view>
+                       </view>
+                       <view class="score" wx:if="{{item.EScore_Scores>0}}">需要{{item.BName}}：{{item.EScore_Scores}}</view>
+                       <view class="score" wx:if="{{item.score_Deduct>0}}">{{item.BName}}可抵扣：{{item.score_Deduct}}</view>
+                       <view class="score" wx:if="{{item.LC_Given>0}}">赠：{{item.LC_Given}}{{item.BName}}</view>
+                    </view>
+                    <view class="right">
+                       <view class="num_Change" style="width:200rpx;">
+                       <!-- 减号 -->
+                       <!-- <text class="{{minusStatuses[index]}}" data-index="{{index}}" bindtap="bindMinus" data-cartid="{{item.CartID}}">-</text> -->
+                       <!-- 数值 -->
+                       <input type="number" data-index="{{index}}"  data-cartid="{{item.CartID}}" bindchange="bindManual" value="{{item.buyCount}}" />
+                       <!-- 加号 -->
+                       <!-- <text class="normal" data-index="{{index}}" bindtap="bindPlus" data-cartid="{{item.CartID}}">+</text> -->
+                       </view> 
+                    </view>
+                 </view>
+            <view class="speci" wx:if="{{item.specification.length>5}}">{{item.specification}}</view>
+        
+    </view>
+</view> 
+<!--购物车结束-->
+
+<!--空购物车开始-->  
+<view class="container carts-list" wx:if="{{carts==''}}">
+    <view class="pp">
+         <image class="kong" src="../../images/cart.jpg" mode="aspectFill"/>
+         <view class="cla">购物车还是空的</view>
+    </view>
+</view>
+<!--空购物车结束-->
+
+<!--底部开始-->
+<!-- <view class="footer_upgrade" wx:if="{{upgrade_ok=='confirm'&&((user_type=='会员'&&total_vip>=config.upgrade_CK)||(user_type=='创客'&&total_vip>=config.upgrade_diff))}}">
+    <text style="margin-top:20rpx;margin-left:20rpx;">推荐人手机号：</text>
+    <input type="text" name="mobile_tj" value="{{mobile_tj}}" style="background:lightpink;width:240rpx;margin-top:20rpx;"  bindinput="Input_mobile_tj" />
+    <button class="button_fonfirm" bindtap='bindCheckout_up'>确认升级</button>
+</view> -->
+<view class="carts-footer" wx:if="{{upgrade_ok=='no'}}">
+   <view bindtap="bindSelectAll" style='width:65%'>
+       <icon wx:if="{{selectedAllStatus}}" type="success_circle" size="24" />
+        <icon wx:else type="circle" size="24"/>
+        <view style="margin-top:-60rpx;margin-left:60rpx;">
+        <text >全选</text>
+        <text class="reds" wx:if="{{total>0}}">¥{{total}}</text>
+        </view>
+        <!-- <view class='upgrade' wx:if="{{user_type=='会员'&&total_vip<config.upgrade_CK&&total>0&&(config.upgrade_CK-total_vip)>0}}" bindtap="goUpgrade">
+          <text >再凑</text>
+          <text style='color:green'>{{config.upgrade_CK-total_vip}}</text><text>元升级为创客</text>
+        </view>
+        <view class='upgrade' wx:if="{{user_type=='会员'&&total_vip>=config.upgrade_CK&&total_vip<config.upgrade_LS}}">
+          <text >符合升级</text>
+          <text style='color:green'>创客</text><text>条件</text>
+        </view>
+        <view class='upgrade' wx:if="{{user_type=='会员'&&total_vip>=config.upgrade_LS}}">
+          <text >符合升级</text>
+          <text style='color:green'>理事</text><text>条件</text>
+        </view>
+        <view class='upgrade' wx:if="{{user_type=='创客'&&total_vip<config.upgrade_LS&&total>0&&(config.upgrade_diff-total_vip)>0}}" bindtap="goUpgrade2">
+          <text >再凑</text>
+          <text style='color:green'>{{config.upgrade_diff-total_vip}}</text><text>元升级为理事</text>
+        </view>
+        <view class='upgrade' wx:if="{{user_type=='创客'&&total_vip>=config.upgrade_diff}}">
+          <text >符合升级</text>
+          <text style='color:green'>理事</text><text>条件</text>
+        </view> -->
+        <text style='font-size:16rpx;' wx:if="{{score_Deduct>0}}">积分可抵扣:</text>
+        <text style='font-size:22rpx;' wx:if="{{score_Deduct>0}}">{{score_Deduct}}元</text>
+
+        <text style='font-size:20rpx;' wx:if="{{EXScoreTJ>0}}">需要:</text>
+        <text style='font-size:22rpx;' wx:if="{{EXScoreTJ>0}}">{{EXScoreTJ}}{{BName}}</text>
+
+        <text style='font-size:20rpx;' wx:if="{{lc_givenTJ>0}}">赠:</text>
+        <text style='font-size:20rpx;' wx:if="{{lc_givenTJ>0}}">{{lc_givenTJ}} LC</text>
+   </view>
+   <view class="button_del" bindtap='bindDel'>删除</view>
+   <view class="button_Checkout" bindtap='bindShowMobile' wx:if="{{(user_type=='会员'&&total_vip>=config.upgrade_CK)||(user_type=='创客'&&total_vip>=config.upgrade_diff)}}">立即升级</view>
+   <view class="button_Checkout" bindtap='bindCheckout' wx:else>立即结算</view>
+</view>
+<!--底部结束-->
+
+
+</view>
+

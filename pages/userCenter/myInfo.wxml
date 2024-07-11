@@ -1,0 +1,86 @@
+<view class="container">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="section"  wx:if="{{1==2}}">
+      <input type="text" hidden="true" value="{{user_id}}" name="user_id"/>
+      <view class="fill_text">推荐人：</view>
+      <view class='fill_input'>
+        <input type="text" class='fill_readonly' name="reference_Name" value='{{reference_Name}}' />
+      </view>
+    </view>
+    <view class="section">
+      <view class="fill_text">姓  名：</view>
+      <view class='fill_input'>
+        <input type="text" class='fill_readonly' name="user_NameC" value='{{user_NameC}}' />
+      </view>
+    </view>
+    <view class="section">
+      <view class="fill_text">绑定手机：</view>
+      <view class='fill_input'>
+       <input type="text" class='fill_readonly' name="mobile_hidden" value='{{mobile_hidden}}' />
+      </view>
+      <button open-type="getPhoneNumber"  bindgetphonenumber="getPhoneNumber">绑定</button>
+    </view>
+    <view class="section" wx:if="{{1==2}}">
+      <view class="fill_text">开户行：</view>
+      <view class='fill_input'>
+       <input type="text" class='fill' name="bankName" value='{{bankName}}' bindinput="Input_BankName"  />
+      </view>
+    </view>
+    <view class="section" wx:if="{{1==2}}">
+      <view class="fill_text">银行账号：</view>
+      <view class='fill_input'>
+       <input type="text" class='fill' name="bankNo" value='{{bankNo}}' bindinput="Input_BankNo"  />
+      </view>
+    </view>
+    <view style="margin-top:15rpx;font-size:28rpx;">
+      <checkbox-group bindchange="checkboxChange">
+       <label class="checkbox" wx:for="{{selectData}}"><checkbox value="{{item.typeId}}" checked="{{item.checked}}" />修改登录密码</label>
+      </checkbox-group>
+    </view>
+    <view class="baoming_3" wx:if="{{pwd_login}}">
+    <view class="section">
+      <view style="width:150rpx;margin-top:10rpx;">登录密码：</view>
+      <input type="password" style="width=500rpx" name="pwdLogin1" value="{{pwdLogin1}}" bindinput="Input_pwdLogin1" />
+    </view>
+    <view class="section">
+      <view style="width:150rpx">确认密码：</view>
+      <input type="password"  name="pwdLogin2" value="{{pwdLogin2}}" bindinput="Input_pwdLogin2" />
+    </view>
+   </view>
+
+    <view style="margin-top:15rpx;font-size:28rpx;">
+      <checkbox-group bindchange="checkboxChange2">
+      <label class="checkbox" wx:for="{{selectData}}"><checkbox value="{{item.typeId}}" checked="{{item.checked}}" />修改转账密码</label>
+      </checkbox-group>
+    </view>
+    <view class="baoming_3" wx:if="{{pwd_pay}}">
+    <view class="section">
+      <view style="width:150rpx;margin-top:10rpx;">转账密码：</view>
+      <input type="password" style="width=500rpx" name="pwdPay1" value="{{pwdPay1}}" bindinput="Input_pwdPay1" />
+    </view>
+    <view class="section">
+      <view style="width:150rpx">确认密码：</view>
+      <input type="password" name="pwdPay2" value="{{pwdPay2}}" bindinput="Input_pwdPay2" />
+    </view>
+
+
+    </view>
+    <view class="section">
+      <view class="fill_text">手机验证码：</view>
+      <view class='fill_input' style="display:flex;flex-direction:rows;">
+       <input type="text" class="fill" style="width:130rpx;" name="certyCode" value='{{certyCode}}' bindinput="Input_CertyCode"  />
+       
+       <view class="certyCode" bindtap="send" >{{text}}</view>
+      </view>
+    </view>
+    <view class="btn-area">
+      <button class="button" formType="submit">保存出行人信息</button>
+    </view>
+    <view>
+      <label></label>
+    </view>
+    <view class="btn-area">
+      <button formType="submit">保存信息</button>
+    </view>
+  </form>
+</view>

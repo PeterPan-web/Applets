@@ -1,0 +1,24 @@
+<!--pages/userCenter/shoucang.wxml-->
+<view class="page">
+    <view class="search_no" wx:if="{{!productData.length}}">
+            <view class="font_14">
+              <image class="scimg" src="/images/search_no.png"></image>
+            </view>
+            <text>暂时还没有流水账/(ㄒoㄒ)/~~</text>
+    </view>
+    <view class="shop df" wx:for="{{productData}}">   
+        <view class="df_1">            
+            <view class="sp_text">
+                <image class="sh_slt" src="{{item.ImgUrl}}"></image>
+                <navigator url="../proDetail/proDetail?productId={{item.ProID}}">
+                    <view class="sp_tit ovh1">{{item.ProductName}}</view>
+                    <view class="sp_jg">￥：{{item.price}}</view>
+                </navigator>
+                <view class="tag">结算时间：{{item.timeCreate}}</view>
+            </view>
+        </view>
+    </view>
+
+</view>
+
+

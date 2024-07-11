@@ -1,0 +1,453 @@
+<!-- index.wxml -->
+<view class="page__bd">
+     <view class="weui-loadmore"  wx:if="{{hidden}}">
+            <view class="weui-loading"></view>
+            <view class="weui-loadmore__tips">正在加载</view>
+     </view>
+     <view class="weui-loadmore weui-loadmore_line" wx:if='{{show}}'>
+            <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+      </view>
+</view>
+<view class="page">
+  <block wx:for="{{module_list}}" wx:key="id">
+    <!--搜索开始-->
+    <view wx:if="{{item.name=='search'}}" class="search">
+        <image src="{{icoImgUrl.index_menu_scan}}" style="width:42rpx;height:42rpx;margin-top:12rpx;margin-left:10rpx;" bindtap="doScan"></image>
+        <view class="search-block">
+            <navigator url="{{item.url}}">
+                  <image src="{{icoImgUrl.icon_search}}"></image>
+                  <text style='font-size:28rpx;color:gray;'>{{item.title}}</text>
+            </navigator>
+        </view>
+    </view>
+    <!--搜索结束-->
+   
+    <!--滑屏开始-->
+    <view wx:elif="{{item.name=='banner'}}" style='z-index:-1;'>
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="height:{{item.pic_height}}rpx;">
+      <block wx:for="{{imgUrls}}" wx:key="id" wx:for-item="banner">
+      <swiper-item>
+        <navigator class="pr" url="{{banner.url}}" hover-class="changestyle">
+         <image src="{{banner.photo}}" class="slide-image" /><text class="slide-text">{{banner.name}}</text>
+        </navigator>
+      </swiper-item>
+      </block>
+    </swiper>
+    </view>
+    <!--滑屏结束-->
+
+    <!--四大分类开始-->
+    <view class="sort" wx:elif="{{item.name=='sort'}}">
+      <navigator class="pr" url="{{sort.url}}&title={{sort.name}}" hover-class="changestyle" wx:for="{{sortData}}" wx:for-item="sort" wx:key="id">
+        <image class="sortIcon" src="{{sort.photo_x}}"></image>
+        <view class="sortName">{{sort.name}}</view>
+      </navigator>
+    </view>
+    <!--四大分类结束-->
+    <!--快讯开始--> 
+    <view class="menu_quick" wx:if="{{item.name=='quick'}}">
+      <image class="img_kuaixun" src="/images/kuaixun.png"></image>
+      <swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="2000">
+       <block wx:for="{{msgList}}" wx:for-item="msg" wx:key="id">
+        <navigator url="/pages/news/detail?id={{msg.id}}&fromId=0" open-type="navigate">
+        <swiper-item>
+          <view class="kuaixun_item">{{msg.title}}</view>
+        </swiper-item>
+        </navigator>
+       </block>
+      </swiper>
+    </view>
+    <!--快讯结束-->
+
+     <!--报名开始--> 
+     <view class="menu_baoming" wx:if="{{item.name=='baoming'}}">
+      <!-- <image class="img_kuaixun" src="/images/kuaixun.png"></image> -->
+      <swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="2000" display-multiple-items="2">
+       <block wx:for="{{baoming}}" wx:for-item="msg" wx:key="id">
+        <!-- <navigator url="/pages/news/detail?id={{msg.id}}&fromId=0" open-type="navigate"> -->
+        <swiper-item>
+          <image class="img_baoming" src="{{msg.pic}}"></image>
+          <view class="baoming_item">{{msg.title}}</view>
+        </swiper-item>
+        <!-- </navigator> -->
+       </block>
+      </swiper>
+    </view>
+
+   
+    <!--报名结束-->
+
+    <!--推荐门店开始-->
+    <view wx:elif="{{item.name=='mch'&&mch_list&&mch_list.length}}">
+          <view class="flex flex-row flex-y-center" style="background: #fff;height: 80rpx;">
+              <view class="flex-grow-1 flex-y-center" style="color:#ff8831;padding: 0 24rpx;font-size:32rpx;">
+                    <image src="https://yue6.phph5.com/web/statics/wxapp/images/icon-good-shop.png" style="width: 36rpx;height: 36rpx;margin-right: 12rpx"></image>
+                    <text>好店推荐</text>
+              </view>
+              <view class="flex-row-0">
+                    <navigator class="flex flex-row flex-y-center" style="height: 80rpx;padding: 0 24rpx" url="/mch/shop-list/shop-list">
+                        <view class="flex flex-row">
+                            <view style="margin-right: 12rpx;font-size:32rpx;">更多</view>
+                            <view class="flex-y-center">
+                                <image src="https://yue6.phph5.com/web/statics/wxapp/images/icon-jiantou-r.png" style="width: 12rpx;height: 22rpx;"></image>
+                            </view>
+                        </view>
+                    </navigator>
+                </view>
+          </view>
+          <scroll-view scrollX="true" style="padding: 10rpx 19rpx;white-space: nowrap;">
+              <navigator style="margin: 0 5rpx;display: inline-block;width: 224rpx" url="/mch/shop/shop?mch_id={{item.id}}" wx:for="{{mch_list}}" wx:key="id">
+                  <image src="{{item.logo}}" style="width: 224rpx;height: 224rpx;background-color: #fff"></image>
+                  <view style="text-align:center; white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-size: 9pt;">
+                    {{item.name}}
+                  </view>
+              </navigator>
+          </scroll-view>
+    </view>
+    <!--推荐门店结束-->
+
+
+    <!--商品样式一开始-->
+    <view class="user-block" wx:if="{{item.name=='productData'}}">
+        <view class="menu_fill" style="background: {{item.cbg_bgcolor}};">
+            <view class="flex-grow-1 flex-row flex-y-center" style='display: flex;flex-direction: row;width:85%'>
+                 <image src="{{item.cbg_url}}" style="width: {{item.cbg_width}}rpx;height: {{item.cbg_height}}rpx;margin-right: 12rpx;margin-top:5rpx;"></image>
+                 <view style="font-size: 12pt;color: {{item.cbg_fontcolor}};margin-right: 16rpx">{{item.title}}</view>
+                 <view></view>
+            </view>
+            <navigator style='display: flex;flex-direction: row;font-size:28rpx;' url="{{item.url}}" wx:if="{{item.url.length>0}}">
+                <view style="margin-right: 14rpx">更多</view>
+                <image src="{{icoImgUrl.Index_menu_jiantou}}" style="width: 12rpx;height: 22rpx;margin-top:10rpx;"></image>
+            </navigator>
+        </view>
+    </view>
+    <view wx:if="{{item.name=='productData'}}">
+      <view class="proPart" wx:for="{{productData}}" wx:for-item="pro" wx:key="id">   
+        <view class="proPart_1">
+            <navigator url="../proDetail/proDetail?priceType=member&priceFrom={{pro.price}}&productId={{pro.Id}}&fromId=0">     
+               <image class="proImg" src="{{pro.photo_x}}"></image>
+            </navigator>            
+            <view class="proInfo">
+                <navigator url="../proDetail/proDetail?priceType=member&priceFrom={{pro.price}}&productId={{pro.Id}}&fromId=0">
+                    <view class="proName">{{pro.name}}</view>
+                    <view class="proComment">{{pro.briefComment}}</view>
+                    <view class="price_show">
+                      <view class="price_Sale">爆卖价：¥ {{pro.price}}</view>
+                      <view class="price_Guide">市场价：¥ {{pro.price_Guide}}</view>
+                    </view>
+                    <view class="price_jingbao">
+                      <view class="EScore" wx:if="{{pro.score_Deduct>0}}">积分{{pro.EScoreSort}}：<span style='color:red;'>{{pro.score_Deduct}}</span></view>
+                      <view class="btnRight"><!--image class="img_buy" src="/images/buy.png"></image--></view>
+                    </view>
+                    <view class="proMark" style="margin-bottom:0rpx;">
+                       <view class="markBtn_Green" wx:for="{{pro.proMark}}" wx:for-item="Dt">{{Dt}}</view>
+                    </view>
+                </navigator>
+            </view>
+        </view>
+      </view>
+    </view>
+    <!--商品样式一结束-->
+
+    <!--商品样式二开始-->
+    <view class="user-block" wx:if="{{item.name=='productData2'}}">
+        <view class="menu_fill" style="background: {{item.cbg_bgcolor}};">
+            <view class="flex-grow-1 flex-row flex-y-center" style='display: flex;flex-direction: row;width:85%'>
+                 <image src="{{item.cbg_url}}" style="width: {{item.cbg_width}}rpx;height: {{item.cbg_height}}rpx;margin-right: 12rpx;margin-top:5rpx;"></image>
+                 <view style="font-size: 12pt;color: {{item.cbg_fontcolor}};margin-right: 16rpx">{{item.title}}</view>
+                 <view></view>
+            </view>
+            <navigator style='display: flex;flex-direction: row;font-size:28rpx;' url="{{item.url}}" wx:if="{{item.url.length>0}}">
+                <view style="margin-right: 14rpx">更多</view>
+                <image src="{{icoImgUrl.Index_menu_jiantou}}" style="width: 12rpx;height: 22rpx;margin-top:10rpx;"></image>
+            </navigator>
+        </view>
+    </view>
+    
+    <view wx:if="{{item.name=='productData2'}}">
+      <view class="proPart2" wx:for="{{productData2}}" wx:for-item="pro" wx:key="id">
+        <view class="proPart2_top">
+            <view class="proInfo2">
+                <navigator url="../proDetail/proDetail?priceType=member&priceFrom={{pro.price}}&productId={{pro.Id}}&fromId=0">
+                    <view class="proName2">{{pro.name}}</view>
+                    <view class="proComment2">{{pro.briefComment}}</view>
+                    <view class="price_show2">
+                      <view class="price_Sale2">会员价：¥ {{pro.price}}</view>
+                      <view class="price_Guide2" wx:if="{{pro.price_Guide>0}}">市场价：¥ {{pro.price_Guide}}</view>
+                    </view>
+                    <view class="price_jingbao2">
+                      <view class="EScore2" wx:if="{{pro.score_Deduct>0}}">积分{{pro.EScoreSort}}：<span style='color:red;'>{{pro.score_Deduct}}</span></view>
+                      <view class="EScore2" wx:else></view>
+                      <!--view class="btnRight2"><image class="img_buy2" src="/images/buy.png"></image></view-->
+                    </view>
+                </navigator>
+            </view>
+            <navigator url="../proDetail/proDetail?priceType=member&priceFrom={{pro.price}}&productId={{pro.Id}}&fromId=0">     
+               <image class="proImg2" src="{{pro.photo_x}}"></image>
+            </navigator> 
+        </view>
+
+        <view class="proPart2_bottom">
+              <navigator url="../proDetail/proDetail?priceType=member&priceFrom={{pro.price}}&productId={{pro.Id}}&fromId=0">
+                    <view class="fullName2">
+                       <view class="proMark2">
+                         <view class="markBtn_RedBG" wx:for="{{pro.proMark}}" wx:key="id" wx:for-item="Dt">{{Dt}}</view>
+                       </view>
+                    </view>
+                    
+              </navigator>
+        </view>
+
+      </view>
+    </view>
+    <!--商品样式二结束-->
+
+    <!--商品样式三开始-->
+    <view class="user-block" wx:if="{{item.name=='productData3'}}">
+        <view class="menu_fill" style="background: {{item.cbg_bgcolor}};">
+            <view class="flex-grow-1 flex-row flex-y-center" style='display: flex;flex-direction: row;width:85%'>
+                 <image src="{{item.cbg_url}}" style="width: {{item.cbg_width}}rpx;height: {{item.cbg_height}}rpx;margin-right: 12rpx;margin-top:5rpx;"></image>
+                 <view style="font-size: 12pt;color: {{item.cbg_fontcolor}};margin-right: 16rpx">{{item.title}}</view>
+                 <view></view>
+            </view>
+            <navigator style='display: flex;flex-direction: row;font-size:28rpx;' url="{{item.url}}" wx:if="{{item.url.length>0}}">
+                <view style="margin-right: 14rpx">更多</view>
+                <image src="{{icoImgUrl.Index_menu_jiantou}}" style="width: 12rpx;height: 22rpx;margin-top:10rpx;"></image>
+            </navigator>
+        </view>
+    </view>
+
+    <view class="cont" wx:if="{{item.name=='productData3'}}">
+      <navigator class="pr" url="../proDetail/proDetail?priceType=member&priceFrom={{pro.price_yh}}&productId={{pro.Id}}&fromId=0" hover-class="changestyle" wx:for="{{productData3}}" wx:for-item="pro" wx:key="id">
+        <image class="proPic3" src="{{pro.photo_x}}"></image>
+        <view class="proName3">{{pro.name}}</view>
+        <view style="display:flex;line-height:50rpx;padding:10rpx 0;">
+          <view class="price_Sale3" style="  color: red;">¥ {{pro.price_yh}}</view>
+          <view class="price_Guide3">¥ {{pro.price}}</view>
+        </view>
+        <view style="display:flex;line-height:50rpx;color:#999">
+          <view class="unit3" style="font-size:28rpx;width:40%">
+           <text>单位：{{pro.unit}}</text>
+          </view>
+          <view class="renqi3" style="width:60%">人气：{{pro.renqi}}</view>
+        </view>
+      </navigator>
+    </view>
+    <!--商品样式三结束-->
+
+    <!--商品样式四开始-->
+    <view class="user-block" wx:if="{{item.name=='productData4'}}">
+       <view class="menu_fill" style="background: {{item.cbg_bgcolor}};">
+            <view class="flex-grow-1 flex-row flex-y-center" style='display: flex;flex-direction: row;width:85%'>
+                 <image src="{{item.cbg_url}}" style="width: {{item.cbg_width}}rpx;height: {{item.cbg_height}}rpx;margin-right: 12rpx;margin-top:5rpx;"></image>
+                 <view style="font-size: 12pt;color: {{item.cbg_fontcolor}};margin-right: 16rpx">{{item.title}}</view>
+                 <view></view>
+            </view>
+            <navigator style='display: flex;flex-direction: row;font-size:26rpx;' url="{{item.url}}" wx:if="{{item.url.length>0}}">
+                <view style="margin-right: 14rpx">更多</view>
+                <image src="{{icoImgUrl.Index_menu_jiantou}}" style="width: 12rpx;height: 22rpx;margin-top:10rpx;"></image>
+            </navigator>
+        </view>
+    </view>
+
+    <view class="cont" wx:if="{{item.name=='productData4'}}">
+      <navigator class="product4" url="../proDetail/proDetail?priceType=member&priceFrom={{pro.price_yh}}&productId={{pro.Id}}&fromId=0" hover-class="changestyle" wx:for="{{productData4}}"  wx:for-item="pro" wx:key="id">
+        <image class="proPic4" src="{{pro.photo_x}}"></image>
+        <view class="proName4">{{pro.name}}</view>
+        <view style="display:flex;line-height:50rpx;">
+          <view class="price_Sale4">¥ {{pro.price_yh}}</view>
+          <view class="price_unit4">单位：{{pro.unit}}</view>
+        </view>
+        <!-- <view style="display:flex;line-height:50rpx;">
+          <view class="unit4"></view>
+          <view class="num4">人气：{{pro.renqi}}</view>
+        </view> -->
+        <view class="proPart4_bottom">
+              <navigator url="../proDetail/proDetail?priceType=member&priceFrom={{pro.price_yh}}&productId={{pro.Id}}&fromId=0">
+                    <view class="proMark2">
+                      <view class="markBtn_RedBG" wx:for="{{pro.proMark}}" wx:key="key" wx:for-item="Dt">{{Dt}}</view>
+                    </view>
+              </navigator>
+        </view>
+      </navigator>
+    </view>
+    <!--商品样式四结束-->
+
+    <!--VIP开始-->
+    <view class="user-block" wx:if="{{item.name=='VIP_LC'}}">
+        <view class="menu_fill" style="background: {{item.cbg_bgcolor}};">
+            <view class="flex-grow-1 flex-row flex-y-center" style='display: flex;flex-direction: row;width:85%'>
+                 <image src="{{item.cbg_url}}" style="width: {{item.cbg_width}}rpx;height: {{item.cbg_height}}rpx;margin-right: 12rpx;margin-top:5rpx;"></image>
+                 <view style="font-size: 12pt;color: {{item.cbg_fontcolor}};margin-right: 16rpx">{{item.title}}</view>
+                 <view></view>
+            </view>
+            <navigator style='display: flex;flex-direction: row;font-size:26rpx;' url="{{item.url}}" wx:if="{{item.url.length>0}}">
+                <view style="margin-right: 14rpx">更多</view>
+                <image src="{{icoImgUrl.Index_menu_jiantou}}" style="width: 12rpx;height: 22rpx;margin-top:10rpx;"></image>
+            </navigator>
+        </view>
+    </view>
+    
+    <view class="cont" wx:if="{{item.name=='VIP_LC'}}">
+      <navigator wx:if="{{item.pic.length>0}}" url="{{item.url}}">
+          <image src="{{item.pic}}" style="width:95%;height:{{item.pic_height}}"></image>
+      </navigator>
+      <navigator wx:if="{{item.detail_hidden=='0'}}" class="pr" url="../proDetail/proDetail?priceType=vip&priceFrom={{pro.price}}&productId={{pro.Id}}&fromId=0" hover-class="changestyle" wx:for="{{proVIP}}" wx:for-item="pro" wx:key="key">
+        <image class="proPic_Score" src="{{pro.photo_x}}"></image>
+        <view class="proName_Score">{{pro.name}}</view>
+        <view style="display:flex;line-height:50rpx;padding:10rpx 0;">
+          <view class="priceSale_VIP">  ¥ {{pro.price}}</view>
+          <view class="Score_Give" style="color:red;">赠：{{pro.Score_Give}}{{pro.BName}}</view>
+        </view>
+      </navigator>
+    </view>
+    <!--VIP结束-->
+
+    <!--积分商品开始-->
+    <view class="user-block" wx:if="{{item.name=='proScore'}}">
+        <view class="menu_fill" style="background: {{item.cbg_bgcolor}};">
+            <view class="flex-grow-1 flex-row flex-y-center" style='display: flex;flex-direction: row;width:85%'>
+                 <image src="{{item.cbg_url}}" style="width: {{item.cbg_width}}rpx;height: {{item.cbg_height}}rpx;margin-right: 12rpx;margin-top:5rpx;"></image>
+                 <view style="font-size: 12pt;color: {{item.cbg_fontcolor}};margin-right: 16rpx">{{item.title}}</view>
+                 <view></view>
+            </view>
+            <navigator style='display: flex;flex-direction: row;font-size:26rpx;' url="{{item.url}}" wx:if="{{item.url.length>0}}">
+                <view style="margin-right: 14rpx">更多</view>
+                <image src="{{icoImgUrl.Index_menu_jiantou}}" style="width: 12rpx;height: 22rpx;margin-top:10rpx;"></image>
+            </navigator>
+            <!-- <navigator url="plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id={{roomId}}&custom_params={{customParams}}"></navigator> -->
+        </view>
+    </view>
+    
+    <view class="cont" wx:if="{{item.name=='proScore'}}">
+      <!-- <navigator wx:if="{{item.pic.length>0}}" url="{{item.url}}">
+          <image src="{{item.pic}}" style="width:95%;height:{{item.pic_height}}rpx;"></image>
+      </navigator> -->
+      <navigator wx:if="{{item.detail_hidden=='0'}}" class="pr" url="../proDetail/proDetail?priceType=score&priceFrom={{pro.EScore_ExtraPay}}&productId={{pro.Id}}&fromId=0" hover-class="changestyle" wx:for="{{proScore}}" wx:for-item="pro" wx:key="key">
+        <image class="proPic_Score" src="{{pro.photo_x}}"></image>
+        <view class="proName_Score">{{pro.name}}</view>
+        <view style="display:flex;line-height:50rpx;padding:10rpx 0;">
+          <view class="EScore_Score" style="color:red;">{{pro.EScore_Scores}}{{pro.uint}}<view wx:if="{{pro.EScore_ExtraPay>0}}"> + {{pro.EScore_ExtraPay}}元</view></view>
+          <view class="priceSale_Score" wx:if="{{pro.price>0}}">¥ {{pro.price}}</view>
+        </view>
+        <view style="display:flex;line-height:50rpx;color:#999">
+          <view class="guidePrice_Score">市场价:¥ {{pro.price_Guide}}</view>
+          <view class="renqi_Score" style="width:60%">已兑：{{pro.renqi}}</view>
+        </view>
+      </navigator>
+    </view>
+    <!--积分商品结束-->
+
+
+    <!--平台介绍开始-->
+    <view class="user-block" wx:if="{{item.name=='briefData'&&briefData.length>0}}">
+        <view class="menu_fill" style="background: {{item.cbg_bgcolor}};">
+            <view class="flex-grow-1 flex-row flex-y-center" style='display: flex;flex-direction: row;width:85%'>
+                 <image src="{{item.cbg_url}}" style="width: {{item.cbg_width}}rpx;height: {{item.cbg_height}}rpx;margin-right: 12rpx;margin-top:5rpx;"></image>
+                 <view style="font-size: 12pt;color: {{item.cbg_fontcolor}};margin-right: 16rpx">{{item.title}}</view>
+                 <view></view>
+            </view>
+            <navigator style='display: flex;flex-direction: row;font-size:28rpx;' url="{{item.url}}" wx:if="{{item.url.length>0}}">
+                <view style="margin-right: 14rpx">更多</view>
+                <image src="{{icoImgUrl.Index_menu_jiantou}}" style="width: 12rpx;height: 22rpx;margin-top:10rpx;"></image>
+            </navigator>
+        </view>
+    </view>
+    <view class="brief" wx:if="{{item.name=='briefData'&&briefData.length>0}}">
+      <navigator class="pr" url="../news/book?id={{briefData.Id}}&fromId=0" hover-class="changestyle" wx:for="{{briefData}}"  wx:key="key" wx:for-item="briefData">
+        <image class="briefIcon" src="{{briefData.photo_x}}"></image>
+        <view class="briefName">{{briefData.name}}</view>
+        <view style="display:flex;line-height:50rpx;padding:10rpx 0;">
+          <!--view class="gmxx" style="  color: red;">¥ {{item.price_yh}}</view-->
+          <!--view class="gmx">¥ {{item.price}}</view-->
+        </view>
+      </navigator>
+    </view>
+    <!--平台介绍结束-->
+
+    <!--热门活动开始-->
+    <view class="user-block" wx:if="{{item.name=='salonData'&&salonData.length>0}}">
+        <view class="menu_fill" style="background: {{item.cbg_bgcolor}};">
+            <view class="flex-grow-1 flex-row flex-y-center" style='display: flex;flex-direction: row;width:85%'>
+                 <image src="{{item.cbg_url}}" style="width: {{item.cbg_width}}rpx;height: {{item.cbg_height}}rpx;margin-right: 12rpx;margin-top:5rpx;"></image>
+                 <view style="font-size: 12pt;color: {{item.cbg_fontcolor}};margin-right: 16rpx">{{item.title}}</view>
+                 <view></view>
+            </view>
+            <navigator style='display: flex;flex-direction: row;font-size:28rpx;' url="{{item.url}}" wx:if="{{item.url.length>0}}">
+                <view style="margin-right: 14rpx">更多</view>
+                <image src="{{icoImgUrl.Index_menu_jiantou}}" style="width: 12rpx;height: 22rpx;margin-top:10rpx;"></image>
+            </navigator>
+        </view>
+    </view>
+    
+    <view class="salon" wx:if="{{item.name=='salonData'}}">
+      <navigator class="pr" url="../news/detail?id={{item.Id}}&fromId=0" hover-class="changestyle" wx:for="{{salonData}}"  wx:key="key">
+        <view style="display:flex;line-height:50rpx;color:#999">
+          <image class="briefIcon" src="{{item.photo_x}}"></image>
+          <view class="briefName">{{item.name}}</view>
+          <view class="date" style="width:40%">{{item.date}}</view>
+        </view>
+        <view style="border-top:1px dashed #cccccc;height: 1px;overflow:hidden;"></view>
+      </navigator>
+    </view>
+    <!--热门活动结束-->
+
+
+    <!--简讯开始-->
+    <view class="user-block"  wx:if="{{item.name=='briefNews'&&briefNews.length>0}}">
+       <view class="menu_fill" style="background: {{item.cbg_bgcolor}};">
+            <view class="flex-grow-1 flex-row flex-y-center" style='display: flex;flex-direction: row;width:85%'>
+                 <image src="{{item.cbg_url}}" style="width: {{item.cbg_width}}rpx;height: {{item.cbg_height}}rpx;margin-right: 12rpx;margin-top:5rpx;"></image>
+                 <view style="font-size: 12pt;color: {{item.cbg_fontcolor}};margin-right: 16rpx">{{item.title}}</view>
+                 <view></view>
+            </view>
+            <navigator style='display: flex;flex-direction: row;font-size:28rpx;' url="{{item.url}}" wx:if="{{item.url.length>0}}">
+                <view style="margin-right: 14rpx">更多</view>
+                <image src="{{icoImgUrl.Index_menu_jiantou}}" style="width: 12rpx;height: 22rpx;margin-top:10rpx;"></image>
+            </navigator>
+        </view>
+    </view>
+    
+    <view class="master"  wx:if="{{item.name=='briefNews'}}">
+      <navigator class="pr" url="{{item.newsUrl}}" hover-class="changestyle"  wx:for="{{briefNews}}"  wx:key="key">
+        <image class="briefIcon" src="{{item.picUrl}}"></image>
+        <view class="briefName">{{item.name}}</view>
+      </navigator>
+    </view>
+    <!--简讯结束-->
+
+
+     <!--经验分享开始-->
+    <view class="user-block" wx:if="{{item.name=='shareData'&&shareData.length>0}}">
+        <view class="menu_fill" style="background: {{item.cbg_bgcolor}};">
+            <view class="flex-grow-1 flex-row flex-y-center" style='display: flex;flex-direction: row;width:85%'>
+                 <image src="{{item.cbg_url}}" style="width: {{item.cbg_width}}rpx;height: {{item.cbg_height}}rpx;margin-right: 12rpx;margin-top:5rpx;"></image>
+                 <view style="font-size: 12pt;color: {{item.cbg_fontcolor}};margin-right: 16rpx">{{item.title}}</view>
+                 <view></view>
+            </view>
+            <navigator style='display: flex;flex-direction: row;font-size:28rpx;' url="{{item.url}}" wx:if="{{item.url.length>0}}">
+                <view style="margin-right: 14rpx">更多</view>
+                <image src="{{icoImgUrl.Index_menu_jiantou}}" style="width: 12rpx;height: 22rpx;margin-top:10rpx;"></image>
+            </navigator>
+        </view>
+    </view>
+  
+    <view class="myShare" wx:if="{{item.name=='shareData'}}">
+      <navigator class="pr" url="../news/detail?id={{item.Id}}" hover-class="changestyle" wx:for="{{shareData}}"  wx:key="key">
+        <view style="display:flex;line-height:50rpx;color:#999">
+          <image class="briefIcon" src="{{item.photo_x}}"></image>
+          <view>
+            <view class="briefName">{{item.name}}</view>
+            <view class="date" style="width:40%">{{item.date}}</view>
+            <view class="briefContent">{{item.keyword}}</view>
+          </view>
+        </view>
+        <view style="border-top:1px dashed #cccccc;height: 1px;overflow:hidden;"></view>
+      </navigator>
+    </view>
+    <!--经验分享结束-->
+    
+
+  </block>
+</view>
+  

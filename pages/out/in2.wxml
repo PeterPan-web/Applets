@@ -1,0 +1,74 @@
+<view class="w100">	
+
+    <view class='parameter-wrap'>
+      <block wx:for="{{userList}}" wx:key="userList">
+      <view class="valueSort">
+       <image src="{{item.picUrl}}" class="{{item.checked ? 'checked1_Yes':'checked1_No'}}" data-accNum1='{{item.accNum}}' bindtap='userListTap'>   {{item.accName}}</image>
+      </view>
+      </block>
+    </view>
+
+  <view class="section">
+      <view class="Other_CheckedNo">{{title1}}：</view>
+      <view class='fill_input'>{{accName}}
+      </view>
+      <view class="fill_text2"></view>
+  </view>
+  <view class="section">
+      <view class="Other_CheckedNo">{{title2}}：</view>
+      <view class='fill_input'>{{accNum}}
+      </view>
+      <view class="fill_text2"></view>
+  </view>
+  <view class="section">
+      <view class="Other_CheckedNo">{{title3}}：</view>
+      <view class='fill_input'>{{memo}}
+      </view>
+      <view class="fill_text2"></view>
+  </view>
+   <view class="section">
+      <view class="Other_CheckedNo">{{title4}}：</view>
+      <view class='fill_input'>
+         <input type="text" class='fill' name="otherValue" value='{{otherValue}}'  bindinput="Input_OtherValue" />
+      </view>
+      <view class="fill_text2">  {{unit}}</view>
+  </view>
+  
+  <radio-group class="radio-group" bindchange="radioChang" style="display:flex;flex-direction:row;">   
+      <radio value="weixin" checked='true'><text>正常付款{{item.itema}}</text></radio>
+      
+      <radio value="coin"><text>付款失败{{item.itemb}}</text></radio>
+  </radio-group>
+
+	<view class="btnPay">
+		<view class="btnGreen" wx:if="{{paysort=='weixin'}}">
+		  <button type="primary" id="btnPay" formType="submit" bindtap="createProductOrderByWX">确认支付</button>
+	  </view>
+    <view wx:else>
+      <!-- <view class="section">
+      <view class="fill_text">用户手机：</view>
+      <view class='fill_input'>
+       <input type="text" class='fill' name="userName" value='{{userName}}' bindinput="Input_Mobile"  />
+      </view>
+      </view>
+      <view class="section">
+      <view class="fill_text">账号密码：</view>
+      <view class='fill_input'>
+       <input type="text" password='true' class='fill' name="password" value='{{password}}' />
+      </view>
+      </view> -->
+      <view class="section">
+      <view class="fill_text">失败原因：</view>
+      <view class='fill_input' style='display:flex;flex-direction:row;'>
+       <input type="text" class='fill' name="error_memo" value='风险提示' />
+       <view class="btn" bindtap="rebackError">提交</view>
+      </view>
+      </view>
+      <!-- <button type="primary" id="btnPay2" bindtap="test" style='margin-left:20rpx;margin-top:10rpx;'>确定支付</button> -->
+    </view>
+	</view>
+  
+  
+</view>
+
+<view class="myToast" hidden="{{nullHouse}}">暂无有关信息</view>

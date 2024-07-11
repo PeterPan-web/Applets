@@ -1,0 +1,46 @@
+<import src="../../wxParse/wxParse.wxml"/>
+<view class="page">
+    <scroll-view class="scroll-view_H" scroll-x scroll-with-animation style="width: 100%;height:700px" bindscroll="getSelectItem">
+      <block wx:for="{{proList}}"  wx:for-index="id" wx:for-item="item" wx:key="key">
+        <view class="scroll_item" data-index='{{item.index}}' data-id='{{item.id}}' data-title='{{item.title}}' bindtap='selectProItem'>
+            <!-- <view class="scroll_item {{item.selected ? 'selected' : ''}}" data-index='{{item.index}}' bindtap='selectProItem'> -->
+        <view class='proImg'><image src="{{item.proUrl}}" class="slide-image"  mode="widthFix"/></view>
+          <view class='detailBox'>
+              <view class='proTitle'>{{item.proTitle}}</view>
+         </view>
+         
+         <view class='detailBox0'>
+            <image src="{{item.detailUrl}}" style="height:100%;" mode="widthFix"/>
+         </view>
+         <!-- <view class='btnUp'>
+            <image src="{{item.detailUrl}}" style="height:100%;" mode="widthFix"/>
+         </view> -->
+       </view>
+      
+     </block>
+   </scroll-view>
+<!-- <view class="after-navber"> -->
+    <!-- <view style="padding: 0 60rpx;margin-top:20rpx" wx:if="{{userType_Name=='会员'}}">
+        <view style="font-size: 13pt;margin-bottom: 40rpx">创客升级条件</view>
+        <view style="font-size: 28rpt;color: #888;margin-bottom: 30rpx">1.会员单次在创客专区消费1999元以上</view>
+        <view style="font-size: 26rpt;color: #888;margin-bottom: 30rpx">2.其它区消费不累积</view>
+        <image bindtap="gotoUpgrade" class="login-btn" src="/images/upgrade.png"></image> 
+    </view>
+    <view style="padding: 0 60rpx;margin-top:60rpx" wx:if="{{userType_Name=='会员'||userType_Name=='创客'}}">
+        <view style="font-size: 13pt;margin-bottom: 40rpx">理事升级条件</view>
+        <view style="font-size: 28rpt;color: #888;margin-bottom: 30rpx">1.会员单次在理事专区消费9999元以上</view>
+        <view style="font-size: 26rpt;color: #888;margin-bottom: 30rpx">2.或创客在理事专区单次消费8000元以上</view>
+        <view style="margin-right:30rpx;">
+         <image bindtap="gotoUpgrade2" class="login-btn" src="/images/upgrade.png"></image>
+        </view> 
+    </view>
+    <view style="padding: 0 60rpx;margin-top:60rpx" wx:if="{{userType_Name=='理事'}}">
+        <view style="font-size: 13pt;margin-bottom: 40rpx">合伙人升级条件</view>
+        <view style="font-size: 28rpt;color: #888;margin-bottom: 30rpx">请咨询你的推荐人</view>
+    </view>
+    <view style="padding: 0 60rpx;margin-top:60rpx" wx:if="{{userType_Name=='理事'}}">
+        <view style="font-size: 13pt;margin-bottom: 40rpx">分公司升级条件</view>
+        <view style="font-size: 28rpt;color: #888;margin-bottom: 30rpx">请咨询你的推荐人</view>
+    </view> -->
+<!-- </view> -->
+</view>

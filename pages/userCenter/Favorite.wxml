@@ -1,0 +1,27 @@
+<!--pages/userCenter/shoucang.wxml-->
+<view class="page">
+    <view class="search_no" wx:if="{{!productData.length}}">
+            <view class="font_14">
+              <image class="scimg" src="/images/search_no.png"></image>
+            </view>
+            <text>暂时还没有收藏/(ㄒoㄒ)/~~</text>
+    </view>
+
+    <view class="shop df" wx:for="{{productData}}" wx:key="key">   
+        <navigator url="../proDetail/proDetail?priceType={{item.priceType}}&priceFrom={{item.price}}&productId={{item.ProID}}">     
+          <image class="img_Circular" src="{{item.ImgUrl}}"></image>
+        </navigator>
+        <view class="sp_text">
+                <navigator url="../proDetail/proDetail?priceType={{item.priceType}}&priceFrom={{item.price}}&productId={{item.ProID}}">
+                    <view class="sp_tit ovh1">{{item.ProductName}}</view>
+                    <view class="sp_jg" style='display:flex;flex-direction:row;'><view class="priceType">{{item.priceType_Name}}</view>：￥{{item.price}}</view>
+                </navigator>
+                <view class="time">收藏时间：{{item.timeCreate}}</view>
+                <view class="dle" data-fav-id="{{item.ccid}}" bindtap="removeFavorites">取消收藏
+                </view>
+        </view>
+    </view>
+
+</view>
+
+

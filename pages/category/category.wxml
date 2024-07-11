@@ -1,0 +1,50 @@
+<view class="section">
+    <!-- 左侧类型 -->
+    <scroll-view scroll-y="true" class="left">
+        <view wx:for="{{types}}" wx:key="key" data-sortId="{{item.typeId}}" bindtap="tapType" class="{{item.typeId == currType ? 'active' : ''}}" style="font-size:33rpx">
+            {{item.name}}
+        </view>
+    </scroll-view>
+
+    
+    <view class="loading-row" wx:if="{{loadingStatus}}">
+     <view class="loading-cell">
+      <view class="circle-line">
+      <text></text>
+      <text></text>
+      <text></text>
+      <text></text>
+      <text></text>
+      <text></text>
+      <text></text>
+      <text></text>
+      </view>
+     </view>
+    </view>
+
+
+    <!-- 右侧数据  接品类分 -->
+    <scroll-view scroll-y="true" class="right">
+        <view class="sort">
+           <view bindtap="tapSort" class="pr" data-sortId="{{item.id}}" hover-class="changestyle" wx:for="{{sortTree}}"  wx:key="key">
+             <image class="sortIcon" src="{{item.pic}}"></image>
+             <view  class="{{item.id == currType2 ? 'sortName_active' : 'sortName'}}">{{item.name}}</view>
+           </view>
+        </view>
+        
+        <view class="typeTree">
+            <view  class="brand" wx:for="{{proTree}}" wx:for-item="data" wx:key="key">
+              <navigator url="../proDetail/proDetail?priceType={{data.priceType}}&priceFrom={{data.price}}&productId={{data.Id}}" hover-class="changestyle">      
+                <image class="proPic" src="{{data.ImgUrl}}"></image>
+                <view class="sp_text">
+                  <view class="proName">{{data.ProductName}}</view>
+                  <view class="price_Sale">￥ {{data.price}}</view>
+                  <view class="Score_Give"  wx:if="{{data.Score_Give>0}}">赠：{{data.Score_Give}}{{data.BName}}</view>
+                </view>
+              </navigator>  
+            </view>
+          </view>
+    </scroll-view>
+
+
+</view>

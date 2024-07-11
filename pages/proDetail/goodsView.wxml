@@ -1,0 +1,39 @@
+<!--pages/cart/cart.wxml-->
+<view class="page">
+<!--购物车开始-->
+<view class="shop df" wx:for="{{carts}}" wx:key="key">
+    <view>
+        <navigator url="../proDetail/proDetail?priceType={{item.priceType}}&priceFrom={{item.price}}&productId={{item.ProID}}">
+         <image class="img_Circular" src="{{item.ImgUrl}}" mode="aspectFill"/>
+        </navigator>
+    </view>
+    <view class="sp_text">
+        <navigator url="../proDetail/proDetail?priceType={{item.priceType}}&priceFrom={{item.price}}&productId={{item.ProID}}">
+            <view class="proName">{{item.ProductName}}</view>
+        </navigator>    
+                 <view class="priceShow">
+                    <view class="left">
+                       <view style='display:flex;flex-direction:row;'>
+                         <view class="priceType">{{item.priceType_Name}}</view>
+                         <view class="salePrice">：¥{{item.price}}</view>
+                       </view>
+                       <view class="score" wx:if="{{item.score_Deduct>0}}">积分可抵扣：{{item.score_Deduct}}</view>
+                    </view>
+                 </view>
+            <view class="speci">浏览时间：{{item.dateView}}</view>
+        
+    </view>
+</view> 
+<!--购物车结束-->
+
+<!--空购物车开始-->  
+<view class="container carts-list" wx:if="{{carts==''}}">
+    <view class="pp">
+         <image class="kong" src="../../images/cart.jpg" mode="aspectFill"/>
+         <view class="cla">客官，你还没有浏览商品的记录</view>
+    </view>
+</view>
+<!--空购物车结束-->
+
+</view>
+

@@ -1,0 +1,81 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/category/category",
+    "pages/cart/cart",
+    "pages/userCenter/userCenter",
+    "pages/userCenter/property_List",
+    "pages/userCenter/visit_line",
+    "pages/proDetail/proDetail",
+    "pages/proDetail/goodsView",
+    "pages/proList/proList",
+    "pages/proScore/score",
+    "pages/proSearch/proSearch",
+    "pages/proSpecial/proSpecial",
+    "pages/Finance/myFinance",
+    "pages/Finance/myBill",
+    "pages/Finance/addValue",
+    "pages/Finance/tixian",
+    "pages/order/order_SH",
+    "pages/order/shopOrder_List",
+    "pages/order/order_Detail",
+    "pages/order/downline",
+    "pages/order/tuihuo",
+    "pages/order/ShopPay",
+    "pages/order/ShopPay2",
+    "pages/out/out",
+    "pages/out/in",
+    "pages/out/treeList",
+    "pages/tree/list",
+    "pages/address/Address_Add",
+    "pages/address/Address_List",
+    "pages/MemberShip/shopUserLogin",
+    "pages/MemberShip/upgrade",
+    "pages/userCenter/Favorite",
+    "pages/userCenter/myInfo",
+    "pages/userCenter/user_reg",
+    "pages/userCenter/user_switch",
+    "pages/Finance/zhuanz"
+  ],
+  "requiredPrivateInfos": ["getLocation"],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "位置信息将用于收货地址"
+    }
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ff0036",
+    "navigationBarTitleText": "大管家",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#858585",
+    "selectedColor": "#008842",
+    "borderStyle": "white",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/icons/btn-tabs_01.png",
+        "selectedIconPath": "images/icons/btn-tabs_07.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/tree/list",
+        "iconPath": "images/icons/btn-tabs_02.png",
+        "selectedIconPath": "images/icons/btn-tabs_11.png",
+        "text": "业绩"
+      },
+      {
+        "pagePath": "pages/userCenter/userCenter",
+        "iconPath": "images/icons/btn-tabs_06.png",
+        "selectedIconPath": "images/icons/btn-tabs_10.png",
+        "text": "个人中心"
+      }
+    ]
+  },
+  "lazyCodeLoading": "requiredComponents",
+  
+  "sitemapLocation": "sitemap.json"
+}

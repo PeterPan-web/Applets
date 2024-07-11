@@ -1,0 +1,97 @@
+/* pages/userCenter/shoucang.wxss */
+.clearbutton{
+    background: #fff; 
+    display: inline-block;
+    margin:3% 3% 2% 3%; 
+    color: #dd2727;
+    font-size: 14px;
+    width: 94%;
+}
+.shop{
+    background: #fff;
+    padding: 4%;
+    margin-bottom: 10px;
+}
+
+.img_Circular{
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+    border-radius: 5px;
+    margin-right: 4%;
+    float: left;
+    border:1px solid #fff;
+    box-shadow: 3px 3px 15px rgba(0,0,0,0.2);
+}
+.sp_text{
+    float: left;
+    margin-left: 20rpx;
+    line-height: 20px;
+    width: 100%;
+    }
+.sp_tit{
+    width: 90%;
+    overflow: hidden;
+    font-size: 14px;
+}
+.sp_neb{
+    width: 100%;
+    overflow: hidden;
+    font-size: 12px;
+    color: #999;
+}
+.sp_jg{
+    width: 100%;
+    overflow: hidden;
+    font-size: 14px;
+    color: #fc0628;
+}
+.dle{
+    color: #999;
+    font-size: 12px;
+    float: right;
+}
+.dle image{
+    width: 18px;
+    height: 18px;
+    vertical-align: sub;
+}
+.jk_bottom{
+    position: fixed;
+    bottom: 0;
+    background: #fff;
+    width: 100%; 
+    display: inline-flex;
+    border-bottom: 1px solid #eee; 
+    font-size: 14px;
+    color: #999;       
+}
+.time {
+    font-weight: 200;
+    font-size: .6em;
+    padding-bottom: 10rpx;
+    color: #006621;
+}
+.shop df {  
+    overflow: hidden;
+    border-radius: 5px;
+    margin-right: 6%;
+}
+.priceType{
+  margin-top: 01px;
+  margin-left: 2px;
+  width: 80rpx;
+  height: 35rpx;
+  font-size: 25rpx;
+  background-color: white;
+  color: red;
+  border:1px solid red;
+  border-radius: 8rpx;
+  text-align: center;
+}
+page, view {
+    font-family: arial,'pingfang sc',stheiti,"microsoft yahei",sans-serif
+}
+page {
+    background: #e0e0e0;
+}

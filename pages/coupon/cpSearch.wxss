@@ -1,0 +1,231 @@
+/* pages/search/search.wxss */
+.search{
+    padding: 1% 1%;
+}
+.search input{
+    width: 75%;
+    height:40rpx;
+    border-radius: 8px;
+    background: #fff;
+    border: none;
+    font-size: 12px;
+    padding:1% 1%;
+    margin-right: 15rpx;
+    }
+.search button{
+    line-height:30px;
+    background: none;
+    text-align: center;
+    border: none;
+    padding: 3px;
+}
+.search button::after{
+    content: none;
+}
+.searchcion{
+    width: 50rpx;
+    height: 50rpx;
+    text-align: center
+}
+.cont{
+     padding: 3%;  
+     background-color:  #fff;
+     border-radius: 3px;
+     margin-left: 10rpx;
+     margin-right: 10rpx;
+}
+.w100{ 
+    width: 100%;
+    padding-bottom: 10px;
+}
+.w100 button{
+    text-align: center;
+    line-height: 20px;
+    margin: 3% 2% 0 0;
+    display: inline-table;
+    padding:5px 10px;
+    font-size: 12px;
+}
+.shop{
+    width: 49%;
+    background-color:  ghostwhite;
+    float: left;
+    margin-bottom: 4%;
+}
+.shop:nth-child(even){
+    margin-right: 2%;
+}
+.sh_slt{
+    width: 100%;
+    height: 370rpx;
+    overflow: hidden;
+}
+.sp_text{
+    float: left;
+    line-height: 10px;
+    width: 92%;
+    padding: 4%;
+    margin-left: 10rpx;
+    border-radius: 5%;
+    background-color: bisque;
+    }
+.sp_tit{
+    width: 100%;
+    overflow: hidden;
+    font-size: 14px;
+}
+.sp_jg{
+    width: 100%;
+    overflow: hidden;
+    font-size: 14px;
+    color: #fc0628;
+    line-height: 30px;
+}
+.proName {
+  font-size: 28rpx;
+  color: #333;
+  line-height: 20px;
+  margin: 0;
+  height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  padding-left:5rpx;
+}
+.blue{
+  color: #42b1ff;
+}
+.mr_5{
+    margin-right: 5px;
+}
+.img_pro{
+    width: 45px;
+    height: 45px;
+    background-color: #fff;
+    overflow: hidden;
+    border-radius: 5px;
+    margin-right: 1%;
+    margin-left: 1%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    float: left;
+}
+.Img_List{
+   display: flex;
+   flex-direction: column;
+   border-radius: 5px;
+   margin-right: 4%;
+}
+.Img_List_S{
+   display: flex;
+   flex-direction:row;
+}
+
+
+.quanTop{
+    clear: both;
+    height: 1px;
+    padding-top: 30px;
+}
+.quan{
+  width: 95%;
+  margin: 10px;
+  display: flex;
+  height: 200rpx;
+  border-bottom: 1rpx solid #f3f3f3;
+  border:2px solid #f3f3f3;
+  border-radius: 10rpx;
+}
+.qunLeft{
+  color:  #fff;
+  width: 30%;
+}
+.title_1{
+  margin-top: 35rpx;
+  margin-left: 10rpx;
+  font-size: 60rpx;
+  font-weight: 900;
+}
+.title_2{
+  margin-top: 20rpx;
+  font-size: 30rpx;
+  font-weight: 400;
+  margin-left: 10rpx;
+}
+.quanRight{
+  width: 70%;
+}
+.quanNo {
+  font-size: 22rpx;
+  position: relative;
+  margin-bottom: 10rpx;
+  left: 20rpx;
+  width: 400rpx;
+  color: #ccc;
+}
+.dateLimited {
+  font-size: 22rpx;
+  position: relative;
+  margin-bottom: 120rpx;
+  left: 20rpx;
+  width: 400rpx;
+  color: #ccc;
+}
+.button_cpType {
+  margin-top: 10px;
+  margin-left: 15px;
+  line-height: 50rpx;
+  text-align: center;
+  width:130rpx;
+  height: 50rpx;
+  color: white;
+  font-size: 28rpx;
+  font-weight: 200;
+  border-radius: 10%;
+  border: 0;
+}
+.quanUseName {
+  position: relative;
+  margin-top: 8px;
+  left: 15px;
+  line-height: 50rpx;
+  text-align: center;
+  width:100rpx;
+  height: 50rpx;
+  color: white;
+  font-size: 28rpx;
+  font-weight: 200;
+  border-radius: 10%;
+  border: 0;
+}
+
+
+.button_Use {
+  margin-top: 35px;
+  right: 15px;
+  display:  block;
+  position: fixed;
+  line-height: 50rpx;
+  text-align: center;
+  width:100rpx;
+  height: 50rpx;
+  color: white;
+  font-size: 28rpx;
+  font-weight: 200;
+  border-radius: 10%;
+  border: 0;
+  
+}
+.brief{
+  margin-top: 10px;
+  margin-left: 5px;
+  font-size: 35rpx;
+  font-weight: 200;
+}
+.RTop{
+  display:flex;
+  flex-direction: row;
+   height: 80%;
+}

@@ -1,0 +1,75 @@
+page {
+  background: #efeff4;
+}
+
+/* pages/address/address.wxss */
+.container {
+  font-size: 12px;
+  background-color: white;
+}
+
+.section {
+  height: 100rpx;
+  border-bottom: 1px lightgrey solid;
+  display: flex;
+  align-items: center;
+  margin: 0 30rpx;
+}
+
+.btn-area {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  width: 90%;
+  position: fixed;
+  bottom: 60rpx;
+  color: #fff;
+  background-color: #39C974;
+}
+
+.picker {
+  width: 600rpx;
+  height: 100%;
+}
+.ww{
+  width: 100%;
+  height: 40px;
+  background-color:  beige;
+}
+.img_site1 {
+width: 25px;
+height:25px;
+margin-right: 0px;
+padding-top: 0px;
+}
+.img_site2 {
+width: 20px;
+height: 20px;
+}
+.headmenu{
+  display: flex;
+  flex-direction: row;
+  background: lemonchiffon;
+  border-bottom-color:  azure;
+  height: 30px;
+  border-radius: 15px,15px,0,0;
+}
+.headmenu2{
+  display: flex;
+  flex-direction: row;
+  background: aliceblue;
+  border-bottom-color:  azure;
+  height: 30px;
+  border-radius: 0px,0px,15px,15px;
+}
+.menu1 {
+  display: flex;
+  margin-top: 3px;
+}
+.menu2 {
+  display: flex;
+  margin-left: 15px;
+  margin-top: 4px;
+}

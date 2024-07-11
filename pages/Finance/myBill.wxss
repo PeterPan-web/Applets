@@ -1,0 +1,52 @@
+/*地址管理*/
+
+page {
+  background-color: #efeff4;
+  font-size: 10pt;
+  -webkit-user-select: none;
+  user-select: none;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.sc{
+  background: powderblue;
+  width: 100%;
+  font-size: 12px;
+  line-height: 16px;
+  color: #666;
+  margin-top: 2px;
+  padding: 4% 0;
+}
+.sc image{
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  padding-left: 20px;
+}
+.img{
+  padding-left: 15px;
+}
+
+.table {
+  border:1px solid #dadada;
+  border-right: 0;
+  border-bottom: 0;
+  width: 98%;
+}
+.tr {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.th,.td {
+  padding: 10px;
+  border-bottom: 1px solid #dadada;
+  border-right: 1px solid #dadada;
+  text-align: center;
+  width:100%
+}
+.th {
+  font-weight: 400;
+  background-color: #dadada
+}

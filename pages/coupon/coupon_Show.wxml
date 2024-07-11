@@ -1,0 +1,129 @@
+<!--pay.wxml-->
+<view class="w100">
+		
+<!-- 
+    <view class="p_all bg_white mt10 font_14 Address" wx:if="{{buy_tuijian}}">
+      <view class="section">
+        <view class="fill_text">姓  名：</view>
+        <view class='fill_input'>
+          <input type="text" class='fill' name="buyer_Name" value='{{buyer_Name}}' bindinput="Input_buyer_Name" />
+        </view>
+      </view>
+      <view class="section">
+        <view class="fill_text">手  机：</view>
+        <view class='fill_input'>
+         <input type="text" class='fill' name="buyer_Mobile" value='{{buyer_Mobile}}' bindinput="Input_buyer_Mobile"  />
+        </view>
+      </view>
+    </view> -->
+
+    <view class="xuan" wx:if="{{quan.quan_level=='0'}}">
+    <view class="zhifu_Item">主 卡 号：<span class="font_18">{{quan.quanNo}}</span>  验证码：<span class="font_18">{{quan.pass}}</span><text style="color:blue;margin-left:10rpx;" bindtap='copyBtn'>复制</text></view>
+    </view>
+
+    <view class="xuan"  wx:if="{{quan.quan_level=='1'}}">
+    <view class="zhifu_Item">副 卡 号：<span class="font_18">{{quan.quanNo}}</span>  验证码：<span class="font_18">{{quan.pass}}</span><text style="color:blue;margin-left:10rpx;" bindtap='copyBtn'>复制</text></view>
+    </view>
+
+    <view class="xuan" >
+    <view class="zhifu_Item">类   型：<span class="font_18"> {{quan.quanType}}</span></view>
+    </view>
+
+    <view class="xuan" >
+    <view class="zhifu_Item">线   路：<span class="font_18">{{quan.use_Place}}</span></view>
+    </view>
+    
+    <view class="xuan" >
+    <view class="zhifu_Item">领 券 人：<span class="font_18"> {{quan.useName}}</span></view>
+    </view>
+
+    <view class="xuan" >
+    <view class="zhifu_Item">使用状态：<span class="font_18">{{quan.useStatus}}</span></view>
+    </view>
+
+    <view class="xuan" wx:if="{{quan.useStatus=='未使用'}}">
+    <view class="zhifu_Item">启用日期：<span class="font_18"> {{quan.start_time}}</span></view>
+    </view>
+
+    <view class="xuan"  wx:if="{{quan.useStatus=='未使用'}}">
+    <view class="zhifu_Item">结束日期：<span class="font_18"> {{quan.end_time}}</span></view>
+    </view>
+
+    <view class="xuan" wx:if="{{quan.useStatus!='未使用'}}">
+    <view class="zhifu_Item">出行日期：<span class="font_18"> {{quan.visitStart}}</span>[{{quan.airlineStart}}]</view>
+    </view>
+
+    <view class="xuan"  wx:if="{{quan.useStatus!='未使用'}}">
+    <view class="zhifu_Item">返程日期：<span class="font_18"> {{quan.visitEnd}}</span>[{{quan.airlineBack}}]</view>
+    </view>
+
+  <view>
+		<view class="p_all bg_white mt10 font_14 Address_add" wx:for="{{visit}}"  wx:key="key">
+      <navigator url="../visitor/Visitor_Add?action=view&visitid={{item.id}}&quan_id={{quan.id}}&from1=coupon&from2=coupon_Show">
+		  <!-- <navigator url="../visitor/Visitor_List?quan_id={{quan.id}}&from1=coupon&from2=coupon_Show" hover-class="none"> -->
+			<view class="df" data-Addid="{{item.id}}">
+				<view class="df_1 c6">
+				  <view class="l_h20">出行人：{{item.visitor}}[{{item.telephone}}]</view>
+          <view class="l_h20 mt5">身份证号：{{item.IDNo}}</view>
+          <view class="l_h20 mt5">出行卡号：{{item.quan_no}}</view>
+				</view>
+				<image class="x_right mt15" src="/images/x_right.png"></image>			
+			</view>
+			</navigator>
+    </view>
+    <view class="p_all bg_white mt10 font_14 Address_add" wx:for="{{visit2}}"  wx:key="key">
+		  <navigator url="../visitor/Visitor_List?quan_id={{quan.id}}&from1=coupon&from2=coupon_Show" hover-class="none">
+			<view class="df" data-Addid="{{item.id}}">
+				<view class="df_1 c6">
+				  <view class="l_h20">出行人：{{item.visitor}}[{{item.telephone}}]</view>
+          <view class="l_h20 mt5">身份证号：{{item.IDNo}}</view>
+          <view class="l_h20 mt5">出行卡号：{{item.quan_no}}</view>
+				</view>
+				<image class="x_right mt15" src="/images/x_right.png"></image>			
+			</view>
+			</navigator>
+    </view>
+    <view class="p_all bg_white mt10 font_14 Address_add" wx:for="{{visit3}}"  wx:key="key">
+		  <navigator url="../visitor/Visitor_List?quan_id={{quan.id}}&from1=coupon&from2=coupon_Show" hover-class="none">
+			<view class="df" data-Addid="{{item.id}}">
+				<view class="df_1 c6">
+				  <view class="l_h20">出行人：{{item.visitor}}[{{item.telephone}}]</view>
+          <view class="l_h20 mt5">身份证号：{{item.IDNo}}</view>
+          <view class="l_h20 mt5">出行卡号：{{item.quan_no}}</view>
+				</view>
+				<image class="x_right mt15" src="/images/x_right.png"></image>			
+			</view>
+			</navigator>
+		</view>
+		<!-- <view class="p_all mt10 font_14 Address_add" wx:if="{{!visit_have}}">
+		  <navigator url="../visitor/Visitor_Add?action=add&quan_id={{quan.id}}&from1=coupon&from2=coupon_Show" hover-class="none">
+        <view class="df" data-Addid="{{item.id}}">
+				<view class="df_1 c6">
+				  <view class="l_h20">出行人：<text class="fl_r mr10"></text></view>
+				  <view class="l_h20 mt5">身份证号：</view>
+				</view>
+				<image class="x_right mt15" src="/images/x_right.png"></image>			
+			</view>
+			</navigator>
+    </view> -->
+    <view wx:if="{{!visit_have&&quan.quan_level=='0'}}">
+    <navigator url="../visitor/Visitor_Team_Add?action=add&quan_id={{quan.id}}&quan_no={{quan.quanNo}}&from1=coupon&from2=coupon_Show" hover-class="none" class="add_v">
+      <image class="x_right mt15" src="/images/v_Add.png"></image><view style="margin-top:25rpx;">添加出行人</view>
+    </navigator>
+    </view>
+    <navigator url="../visitor/Visitor_Team_Add2?action=add&quan_id={{quan.id}}&quan_no=no&from1=coupon&from2=coupon_Show" hover-class="none" class="add_v" wx:if="{{visit_have&&!visit3_have&&quan.quan_level=='0'}}">
+      <image class="x_right mt15" src="/images/v_Add.png"></image><view style="margin-top:25rpx;">添加出行人</view>
+    </navigator>
+    </view>	
+
+   
+    
+    <!-- <view class="p_all bg_white mt10 font_14 memo">
+			<textarea class="min_60" auto-height name="remark" placeholder="备注" bindinput="remarkInput" value="{{remark}}"/> 
+		</view> -->
+
+    <view style="text-align:center;" wx:if="{{mark.length>0}}">
+      <image class="mark" src="{{mark}}"></image>
+    </view>
+
+</view>

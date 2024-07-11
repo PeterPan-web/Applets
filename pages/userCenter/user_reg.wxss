@@ -1,0 +1,78 @@
+page {
+  background: #efeff4;
+}
+.container {
+  font-size: 12px;
+  background-color: white;
+  margin-top: -40px;
+}
+.fill {
+  color: red;
+  background-color: lightyellow;
+}
+.fill_readonly {
+  color: red;
+  background-color: #efeff4;
+}
+.section {
+  height: 100rpx;
+  border-bottom: 1px lightgrey solid;
+  display: flex;
+  align-items: center;
+  margin: 0 30rpx;
+}
+
+.btn-area {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  width: 90%;
+  position: fixed;
+  bottom: 40rpx;
+  color: #fff;
+  background-color: #02bf02;
+}
+
+.picker {
+  width: 600rpx;
+  height: 100%;
+}
+.ww{
+  width: 250px;
+}
+.fill_text{
+  width:180rpx;
+}
+.fill_input{
+  width:150px;
+}
+.mark_show {
+  height: 210rpx;
+  border-bottom: 1px lightgrey solid;
+  display: flex;
+  align-items: center;
+  margin: 0 30rpx;
+}
+.mark{
+  width:200rpx;
+  height:200rpx;
+}
+.upimg{
+  width: 40rpx;
+  height: 44rpx;
+  padding-right: -30rpx;
+  margin-bottom: 0rpx;
+  margin-left: 30rpx;
+}
+.searchcion{
+  margin-left: 20rpx;
+  width: 240rpx;
+  height: 40rpx;
+  background:darksalmon;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding-top: 5rpx;
+}

@@ -1,0 +1,431 @@
+<import src="../../wxParse/wxParse.wxml"/>
+<view class="page">
+<!--内容开始-->
+<view class="cont">
+      <!--image class="tp_image" src="{{proData.photo_x}}"></image-->
+      <swiper autoplay="{{autoplay}}" bindchange="hide" circular="true" class="goods-image-swiper" duration="300" indicatorDots="true" interval="5000">
+          <swiper-item wx:for="{{proData.pic_list}}" wx:for-item="Dt" wx:key="id">
+              <image bindtap="play" class="play {{img_hide}}" data-url="{{proData.video_url}}" src="http://api.lewon.net/web/statics/wxapp/images/video-play.png" wx:if="{{proData.video_url}}"></image>
+              <image class="quehuo" src="http://api.lewon.net/web/statics/wxapp/images/quehuo.png" wx:if="{{proData.quehuo}}"></image>
+              <image bindtap="onGoodsImageClick" class="goods-image" data-index="{{index}}" mode="aspectFill" src="{{Dt}}"></image>
+          </swiper-item>
+      </swiper>
+
+  <!--秒杀开始-->
+          <view class="miaosha-bar flex-row" wx:if="{{proData.miaosha&&priceType=='miaosha'}}">
+            <view class="flex-grow-1 flex-row miaosha-bar-left">
+                <view class="flex-grow-0 flex-y-center">
+                    <view class="flex-y-bottom miaosha-price">
+                        <text class="cny">￥</text>
+                        <text>{{price_yh}}</text>
+                    </view>
+                </view>
+                <view class="flex-grow-1 flex-y-center" style='margin-left:20rpx;'>
+                    <view>
+                        <view class="goods-price">￥{{proData.price_Guide}}</view>
+                        <view style='display:flex;flex-direction:row;'>
+                          <view class="sell-num">已抢{{proData.miaosha[0].sell_num}}件</view>
+                          <view class="sell-num">剩余{{proData.miaosha[0].left_num}}件</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="flex-grow-0 flex-y-center miaosha-bar-right">
+                <view>
+                    <view class="time-over-text" wx:if="{{ms_type==0}}">秒杀已经结束</view>
+                    <view class="time-over-text" wx:if="{{ms_type==1}}">距离结束仅剩</view>
+                    <view class="time-over-text" wx:if="{{ms_type==2}}">距离开始仅剩</view>
+                    <view class="timer">
+                        <text class="timer-num">{{miaosha.h}}</text>
+                        <text class="timer-split">:</text>
+                        <text class="timer-num">{{miaosha.m}}</text>
+                        <text class="timer-split">:</text>
+                        <text class="timer-num">{{miaosha.s}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+  <!--秒杀结束-->
+  <view class="title">{{proData.name}}</view>
+  <view class="shuxing">
+    <view class="item" wx:if="{{priceType=='member'}}">
+       <view class="item-3">
+          <view class="priceType">会员价</view>
+          <text class="jiage_mark">¥</text>
+          <text class="price_sale">{{price_yh}}</text>
+       </view>
+       <view class="item-3" wx:if="{{proData.score_Deduct>0}}">积分可{{proData.EScoreSort}}<span style='color:red'>{{proData.score_Deduct}}</span></view>
+       <view class="item-3" wx:else></view>
+       <view class="price_Guide">¥{{proData.price_Guide}}</view> 
+    </view>
+
+    <view class="item" wx:elif="{{priceType=='pintuan'}}">
+       <view class="item-3">
+          <view class="priceType">团购价</view>
+          <text class="jiage_mark">¥</text>
+          <text class="price_sale">{{price_yh}}</text>
+       </view>
+       <span class="item-3">会员价：<text class="jiage">¥{{proData.price_Sale}}</text></span>
+       <view class="price_Guide">¥{{proData.price_Guide}}</view> 
+    </view>
+
+    <view class="item" wx:elif="{{priceType=='miaosha0'}}">
+       <view class="item-3">
+          <view class="priceType">秒杀价</view>
+          <text class="jiage_mark">¥</text>
+          <text class="price_sale">{{price_yh}}</text>
+       </view>
+       <span class="item-3">会员价：<text class="jiage">¥{{proData.price_Sale}}</text></span> 
+       <view class="price_Guide">市场价：{{proData.price_Guide}}</view>
+    </view>
+
+    <view class="item" wx:elif="{{priceType=='guamai'}}">
+       <view class="item-3">
+          <view class="priceType">挂卖价</view>
+          <text class="jiage_mark">¥</text>
+          <text class="price_sale">{{price_yh}}</text>
+       </view>
+       <span class="item-3">会员价：<text class="jiage">¥{{proData.price_Sale}}</text></span>
+       <view class="price_Guide">市场价：{{proData.price_Guide}}</view>
+    </view>
+
+    <view class="item" wx:elif="{{priceType=='vip'}}">
+       <view class="item-3">
+          <view class="priceType">VIP价</view>
+          <text class="jiage_mark">¥</text>
+          <text class="price_sale">{{price_yh}}</text>
+       </view>
+       <span class="item-3" wx:if="{{proData.KCC_Given>0}}">赠：<text class="ICC_Given">{{proData.KCC_Given}}{{proData.BName}}</text></span>
+    </view>
+   
+    <view class="item" wx:elif="{{priceType=='pifa'}}">
+       <view class="item-3">
+          <view class="priceType">市价</view>
+          <text class="jiage_mark">¥</text>
+          <text class="price_sale">市场价：{{proData.price_Guide}}</text>
+       </view>
+       <span class="item-3">批发：<text class="jiage">{{proData.EScore_Scores}}{{proData.BName}}</text></span>
+    </view>
+
+    <view class="item" wx:elif="{{priceType=='yuyue'}}">
+       <view class="item-3">
+          <view class="priceType">预售价</view>
+          <text class="jiage_mark">¥</text>
+          <text class="price_sale">{{price_yh}}</text>
+       </view>
+       <span class="item-3">市价：¥{{proData.price_Guide}}</span>
+       <view class="yuyue_date">
+         <text>预售日期：</text>
+         <text>{{proData.YS_date}}</text>
+       </view>
+    </view>
+
+    <view class="item" wx:elif="{{priceType=='score'}}">
+       <view class="item-3">
+          <view class="priceType">兑换价</view>
+          <text class="jiage_mark">¥</text>
+          <text class="price_sale">{{proData.EScore_ExtraPay}}</text>
+       </view>
+       <span class="item-3" style='color:#000'>{{proData.EScore_Name}}：{{proData.EScore_Scores}}</span>
+       <!-- <view class="price_Guide">¥{{proData.price_Guide}}</view> -->
+    </view>
+    <view class="item" wx:if="{{proData.num_show=='1'}}">
+         <span class="item-3">销量：{{proData.num_sale}}</span>
+         <span class="item-3">仓库：{{proData.num_stock}}</span>
+         <span class="item-3">点击：{{proData.num_hit}}</span>
+    </view>
+    <view class="service" wx:if="{{proData.service_show=='1'}}">
+         <view  style='display:flex;flex-direction:row;'><icon type="success_circle"/><view class="mark">{{proData.service_1}}</view></view>
+         <view  style='display:flex;flex-direction:row;'><icon type="success_circle"/><view class="mark">{{proData.service_2}}</view></view>
+         <view  style='display:flex;flex-direction:row;'><icon type="success_circle"/><view class="mark">{{proData.service_3}}</view></view>
+         <view  style='display:flex;flex-direction:row;'><icon type="success_circle"/><view class="mark">{{proData.service_4}}</view></view>
+    </view>
+  </view>
+  
+  
+</view>
+
+<view class="Speci_Selected" bindtap="setSpeci" wx:if="{{attrValueObj.attrKey>0}}">选项：{{specification}}
+       <view class="c6 fl_r font_18" style='color:#000;padding-top:-10rpx;'>></view>
+</view>
+
+<!--购物车弹窗开始-->
+<view class="drawer_screen" bindtap="setModalStatus" data-status="0" wx:if="{{showModalStatus}}"></view>
+<view animation="{{animationData}}" class="drawer_attr_box" wx:if="{{showModalStatus}}">
+<view class="close_icon" bindtap="setModalStatus" data-status="0">×</view>
+  <view class="drawer_attr_content">
+    <view class="text_center">
+         <image class="drawer_image" src="{{imgUrl}}" ></image>
+         <view class="mingcheng">
+             <view>{{proData.name}}</view>
+             <view style="font-size:29rpx;color:red">¥ {{price_yh}}</view>
+             <view  style="font-size:26rpx;color:#ccc">库存：{{proData.num_stock}}</view>
+         </view>
+    </view>
+<view class="commodity_attr_list">
+
+  <view class="attr_box" wx:for="{{attrValueList}}" wx:for-item="attrValueObj" wx:for-index="attrValueList">
+
+    <view class="attr_name">{{attrValueObj.attrKey}}</view>
+
+    <view class="attr_value_box">
+      <view class="attr_value {{attrIndex==firstIndex || attrValueObj.attrValueStatus[valueIndex]?(value==attrValueObj.selectedValue?'attr_value_active':''):'attr_value_disabled'}}" bindtap="selectAttrValue" data-status="{{attrValueObj.attrValueStatus[valueIndex]}}"
+      data-value="{{value}}" data-key="{{attrValueObj.attrKey}}" data-index="{{attrValueObj.attrIndex}}" data-selectedvalue="{{attrValueObj.selectedValue}}" wx:for="{{attrValueObj.attrValues}}" wx:for-item="value" wx:for-index="valueIndex">{{value}}</view>
+    </view>
+  </view>
+</view>
+    <view class="shu">
+      <text class="cun">购买数量</text>
+      <view class="dian">
+        <view class="stepper">
+         <!-- 减号 -->
+         <!-- <text class="{{minusStatuses[index]}}" data-alpha-beta="0" bindtap="changeNum">-</text> -->
+         <!-- 数值 -->
+         <view class="nownum"><input type="number" value="{{buynum}}"  bindinput="Input_buynum" /></view>
+         <!-- <view class="nownum">{{buynum}}</view> -->
+         <!-- 加号 -->
+         <!-- <text class="normal" data-alpha-beta="1" bindtap="changeNum">+</text> -->
+        </view>
+      </view>
+   </view>
+   <view class="footc" bindtap="addShopCart" data-type="buylater" data-status="1">立即添加</view>
+  </view>
+</view>
+<!--购物车弹窗结束-->
+
+<!--购买弹窗开始-->
+<view class="drawer_screen" bindtap="setModalBuyStatus" data-status="0" wx:if="{{showModalBuyStatus}}"></view>
+<view animation="{{animationData}}" class="drawer_attr_box" wx:if="{{showModalBuyStatus}}">
+<view class="close_icon" bindtap="setModalBuyStatus" data-status="0">×</view>
+  <view class="drawer_attr_content">
+    <view class="text_center" wx:if="{{priceType!='score'}}">
+         <image class="drawer_image" src="{{imgUrl}}" ></image>
+         <view class="mingcheng">
+             <view>{{proData.name}}</view>
+             <view style="font-size:29rpx;color:red">¥ {{price_yh}}</view>
+             <view  style="font-size:26rpx;color:#ccc">库存：{{proData.num_stock}}</view>
+         </view>
+    </view>
+    <view class="text_center" wx:if="{{priceType=='score'}}">
+         <image class="drawer_image" src="{{imgUrl}}" ></image>
+         <view class="mingcheng">
+             <view>{{proData.name}}</view>
+             <view style="font-size:29rpx;color:red">{{escore_Scores}}积分 + ¥ {{price_yh}}</view>
+             <view  style="font-size:26rpx;color:#ccc">库存：{{proData.num_stock}}</view>
+         </view>
+    </view>
+<view class="commodity_attr_list">
+
+  <view class="attr_box" wx:for="{{attrValueList}}" wx:for-item="attrValueObj" wx:for-index="attrValueList">
+
+    <view class="attr_name">{{attrValueObj.attrKey}}</view>
+
+    <view class="attr_value_box">
+      <view class="attr_value {{attrIndex==firstIndex || attrValueObj.attrValueStatus[valueIndex]?(value==attrValueObj.selectedValue?'attr_value_active':''):'attr_value_disabled'}}" bindtap="selectAttrValue" data-status="{{attrValueObj.attrValueStatus[valueIndex]}}"
+      data-value="{{value}}" data-key="{{attrValueObj.attrKey}}" data-index="{{attrValueObj.attrIndex}}" data-selectedvalue="{{attrValueObj.selectedValue}}" wx:for="{{attrValueObj.attrValues}}" wx:for-item="value" wx:for-index="valueIndex">{{value}}</view>
+    </view>
+  </view>
+</view>
+    <view class="shu">
+      <text class="cun" wx:if="{{priceType!='score'}}">购买数量</text>
+      <text class="cun" wx:if="{{priceType=='score'}}">兑换数量</text>
+      <view class="dian">
+        <view class="stepper">
+         <!-- 减号 -->
+         <!-- <text class="{{minusStatuses[index]}}" data-alpha-beta="0" bindtap="changeNum">-</text> -->
+         <!-- 数值 -->
+         <view class="nownum"><input type="number" value="{{buynum}}"  bindinput="Input_buynum" /></view>
+         <!-- 加号 -->
+         <!-- <text class="normal" data-alpha-beta="1" bindtap="changeNum">+</text> -->
+        </view>
+      </view>
+   </view>
+   <view class="footc"  wx:if="{{priceType!='score'}}" bindtap="addShopCart" data-type="buynow" data-status="1">立即购买</view>
+   <view class="footc"  wx:if="{{priceType=='score'}}" bindtap="addShopCart" data-type="buynow" data-status="1">立即兑换</view>
+   
+  </view>
+</view>
+<!--购买弹窗结束-->
+
+<!--商品介绍开始-->
+    <view class="tab-group">
+            <view class="flex-row tab-group-header">
+                <view bindtap="tabSwitch" class="flex-grow-1 flex-x-center tab-group-item {{tab_detail}}" data-tab="detail">
+                    <text class="flex-y-center">商品详情</text>
+                </view>
+                <view bindtap="tabSwitch" class="flex-grow-1 flex-x-center tab-group-item {{tab_comment}}" data-tab="comment">
+                    <text class="flex-y-center">评价</text>
+                </view>
+            </view>
+            <view class="tab-group-body">
+                <view class="tab-group-item {{tab_detail}}">
+                    <view class="goods-detail" style="width:100%;text-align:center;right:0rpx;left:0rpx;position: absolute;">
+                        <template is="wxParse" style="margin-left:0rpx;" data="{{wxParseData:content.nodes}}"></template>
+                    </view>
+                </view>
+                <view class="tab-group-item {{tab_comment}}">
+                    <view class="comment-count flex-row">
+                        <view class="comment-count-item flex-grow-1 flex-x-center flex-col">
+                            <view>全部</view>
+                            <view>({{comment_count.score_all>999?'999+':comment_count.score_all}})</view>
+                        </view>
+                        <view class="comment-count-item flex-grow-1 flex-x-center flex-col">
+                            <view>好评</view>
+                            <view>({{comment_count.score_3>999?'999+':comment_count.score_3}})</view>
+                        </view>
+                        <view class="comment-count-item flex-grow-1 flex-x-center flex-col">
+                            <view>中评</view>
+                            <view>({{comment_count.score_2>999?'999+':comment_count.score_2}})</view>
+                        </view>
+                        <view class="comment-count-item flex-grow-1 flex-x-center flex-col">
+                            <view>差评</view>
+                            <view>({{comment_count.score_1>999?'999+':comment_count.score_1}})</view>
+                        </view>
+                    </view>
+                    <view class="comment-list">
+                        <view class="comment-item flex-row" wx:for="{{comment_list}}" wx:key="id">
+                            <view class="flex-grow-0" style="overflow: visible">
+                                <image mode="aspectFill" src="{{item.avatar_url}}" style="width: 70rpx;height: 70rpx;border-radius: 1000rpx"></image>
+                            </view>
+                            <view class="flex-grow-1">
+                                <view class="flex-row mb-20">
+                                    <view class="flex-grow-1 flex-y-center nickname">{{item.nickname}}</view>
+                                    <view class="flex-grow-0 flex-y-center addtime">{{item.addtime}}</view>
+                                </view>
+                                <view class="mb-20">{{item.content}}</view>
+                                <view class="pic-list" wx:if="{{item.pic_list&&item.pic_list.length>0}}">
+                                    <image bindtap="commentPicView" class="pic-item" data-index="{{index}}" data-pic-index="{{pic_index}}" mode="aspectFill" src="{{item}}" wx:for="{{item.pic_list}}" wx:for-index="{{pic_index}}"></image>
+                                </view>
+                                <view class="reply" wx:if="{{item.reply_content}}">商家: <view class="reply-content">{{item.reply_content}}</view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+    </view>
+<!--商品介绍结束-->
+
+<!--顶部-->
+<!--浮动菜单开始-->
+<view class="cart-nav" openType="redirect" bindtap="goIndex">
+      <image src="/images/home.png" bindtap="goIndex"></image>
+</view>
+<view class="cart-nav2" openType="redirect"  bindtap="goCart">
+      <image src="http://api.lewon.net/web/statics/wxapp/images/nav-icon-cart.png" bindtap="goCart"></image>
+</view>
+<view class="cart-nav3" openType="redirect" bindtap="showShareModal">
+      <image src="/images/share.png" bindtap="showShareModal"></image>
+</view>
+<text class="cart-TJ" wx:if="{{cart_tj>0}}">{{cart_tj}}</text>
+<!--浮动菜单结束-->
+
+<!---底部开始-->
+<view class="footfixed tc">
+  <view class="fl_l w40 font_12 hui03 df">
+          <view class="df_1 l_h15 pt5 bre">
+                <contact-button type="default-light" session-from="productId_{{proData.id}}" class="ke">
+                <contact-button class="pos"></contact-button>
+                  <image class="icon_kf" src="/images/kefu.png" style="margin-right:20px;"></image>
+                  <view class="dbtext" style="line;margin-top:5px">客服</view>
+                </contact-button >
+          </view>
+          <view class="df_1 l_h15 pt5">
+                <view bindtap="addFavorites">
+                    <image class="icon_kf" src="/images/shc.png" ></image>
+                    <view bindtap="doAddFavorites" class="dbtext">收藏</view>
+                </view>
+          </view>
+  </view>
+  <view class="fl_l w60" wx:if="{{priceType=='miaosha'}}">
+    <view wx:if="{{miaosha.h=='00'&&miaosha.m=='00'&&miaosha.s=='00'}}" class="w50 fl_l bg_gray white" data-status="1">秒杀结束</view>
+    <view wx:else class="bg_red white w50 fl_l" bindtap="setModalStatus" data-status="1">马上秒杀</view>
+  </view>
+  <view class="fl_l w60" wx:else>
+    <!-- <view class="w50 fl_l white white" bindtap="addShopCart" data-type="addcart">加入购物车</view> -->
+    <view class="w50 fl_l bg_cheng white" wx:if="{{priceType=='score'}}" bindtap="setModalBuyStatus" data-status="1">立刻兑换</view>
+    <view class="w50 fl_l bg_cheng white" wx:if="{{priceType!='score'}}" bindtap="setModalBuyStatus" data-status="1">立刻购买</view>
+    <!-- <view class="bg_red white w50 fl_l" wx:if="{{priceType!='score'}}" bindtap="setModalStatus" data-status="1">加入购物车</view> -->
+  </view>
+</view>
+
+<view bindtap="close" class="modal" wx:if="{{showPlayer}}">
+    <view class="flex-y-center" style="width:100%;height:100%;position:relative;">
+        <image src="http://api.lewon.net/web/statics/wxapp/images/icon-close2.png" ></image>
+        <video autoplay="true" direction="" id="video" src="{{video_url}}"></video>
+    </view>
+</view>
+
+<view class="share-modal {{share_modal_active}}">
+    <view class="share-modal-body">
+        <view class="flex-row">
+            <button class="share-bottom" openType="share">
+                    <image src="http://api.lewon.net/web/statics/wxapp/images/icon-share-friend.png"></image>
+                    <view>分享给朋友</view>
+                </button>
+            <view bindtap="getGoodsQrcode" class="share-bottom">
+                    <image src="http://api.lewon.net/web/statics/wxapp/images/icon-share-qrcode.png"></image>
+                    <view>生成商品海报</view>
+            </view>
+        </view>
+        <view bindtap="shareModalClose" class="share-modal-close">关闭</view>
+    </view>
+</view>
+<view class="goods-qrcode-modal {{goods_qrcode_active}}">
+    <view class="goods-qrcode-body flex-col">
+        <view class="flex-grow-1">
+            <view class="goods-qrcode-box">
+                    <!--view class="goods-qrcode-loading flex-x-center flex-y-center">
+                        <view class="flex-x-center flex-col">
+                            <image src="http://api.lewon.net/web/statics/wxapp/images/loading2.svg" style="width: 150rpx;height: 150rpx"></image>
+                            <view style="color: #888">海报生成中</view>
+                        </view>
+                    </view-->
+                    <!--image bindtap="goodsQrcodeClick" class="goods-qrcode {{goods_qrcode?'active':''}}" data-src="{{goods_qrcode}}" mode="aspectFit" src="{{goods_qrcode}}"></image-->
+                    <!--image bindtap="goodsQrcodeClick" class="goods-qrcode" data-src="{{goods_qrcode}}" mode="aspectFit" src="{{goods_qrcode}}"></image-->
+              <image class="qr_image" src="{{goods_qrcode}}" bindtap="goodsQrcodeClick"></image>
+               
+            </view>
+        </view>
+        <view class="goods-qrcode-save">
+            <button bindtap="saveGoodsQrcode">保存图片</button>
+            <!--view style="margin-bottom: 20rpx;padding: 0 40rpx">
+                <button bindtap="saveGoodsQrcode" style="background: #ff4544;color: #fff;" wx:if="{{goods_qrcode}}">
+                    保存图片
+                </button>
+                <button style="opacity: .4" wx:else>保存图片</button>
+            </view-->
+            <!--view style="color: #888;font-size: 9pt;text-align: center">保存至相册</view-->
+        </view>
+        <view bindtap="goodsQrcodeClose" class="goods-qrcode-close">
+            <image src="http://api.lewon.net/web/statics/wxapp/images/icon-close2.png" style="width: 50rpx;height: 50rpx;display: block"></image>
+        </view>
+    </view>
+</view>
+
+<view>
+        <view class="mask" hidden="{{!isRealName}}">
+           <view class="mobile" style="display:flex;flex-direction:column">
+             <view class='login'><span>会员编号：</span>
+             <view type="text" class='fill' name="login_name">{{proData.cardNo}}</view></view>
+             <view class='login'><span>手机号码：</span>
+             <input type="text" class='fill' name="login_pwd" value='{{userMobile}}' />
+             <button class="button_mobile" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">绑定</button>
+             </view>
+             <view class='login'><span>真实姓名：</span>
+             <input type="text" class='fill' name="login_pwd" value='{{loginNamec}}' bindinput="Input_loginNamec"/>
+             </view>
+
+             <view class='login'><span>身份证号：</span>
+             <input type="text" class='fill' name="login_pwd" value='{{IDNo}}' bindinput="Input_IDNo"  />
+             </view>
+
+             <view class='mRight' style="margin-top:20rpx;">
+             <button class="button" bindtap="doRealName">提交实名</button>
+             </view>
+           </view>
+        </view>
+    </view>
+
+</view>
+<include src="../common/template/footer.wxml"/>

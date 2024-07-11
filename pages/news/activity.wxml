@@ -1,0 +1,57 @@
+    <!--滑屏开始-->
+<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+      <block wx:for="{{imgUrls}}" wx:key="key">
+      <swiper-item>
+        <navigator class="pr" url="{{item.url}}" hover-class="changestyle">
+         <image src="{{item.photo}}" class="slide-image" width="100%" height="300" /><text class="img_banner">{{item.name}}</text>
+        </navigator>
+      </swiper-item>
+      </block>
+</swiper><!--滑屏结束-->
+
+
+<view class="myShare">
+      <navigator class="pr" url="../news/detail?id={{item.id}}" hover-class="changestyle" wx:for="{{hotNews}}"  wx:key="key">
+        <view style="display:flex;line-height:50rpx;color:#999">
+          <image class="briefIcon" src="{{item.photo_x}}"></image>
+          <view>
+            <view class="briefName">{{item.title}}</view>
+            <!--view class="date" style="width:40%">{{item.date}}</view-->
+            <view class="briefContent">{{item.keyWord}}</view>
+          </view>
+        </view>
+        <view style="border-top:1px dashed #cccccc;height: 1px;overflow:hidden;"></view>
+      </navigator>
+</view>
+
+<!--view class="grid">
+    <view class="card short-card" wx:for="{{hotNews}}" wx:for-index="itemIndex" wx:key="key">
+        <view><text class="title">{{item.title }}</text></view>
+        <view><text class="tag">发布于 {{item.date}}  {{item.author}}</text></view>
+        <view>
+            <text class="para">{{item.keyWord}}</text>
+            <text  class="viewMore" type="default" size="mini" data-index="{{item.id}}" bindtap="modalTap"> >>查看全部</text>
+              <navigator class="pr" url="{{item.url}}" hover-class="changestyle">
+                <text class="viewMore">>查看全部</text>
+              </navigator>
+        </view>
+    </view>
+
+<modal title="KCC商城资讯" confirm-text="确认" hidden="{{modalHidden}}" no-cancel bindconfirm="modalHide">
+    <view>
+        <image class="news-avatar" src="{{modalContent.img}}" background-size="cover"></image></view>
+    <view>
+        <text>标题: {{modalContent.title}}</text>
+    </view>
+    <view>
+        <text>作者: {{modalContent.author}}</text>
+    </view>
+    <view>
+        <text>日期: {{modalContent.date}}</text>
+    </view>
+    <view><text>{{modalContent.content}}</text>
+        </view>
+</modal>
+
+</view-->
+

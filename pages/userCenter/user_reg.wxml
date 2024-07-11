@@ -1,0 +1,68 @@
+<view class="container">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <!-- <view class="section">
+      <input type="text" hidden="true" value="{{user_id}}" name="user_id"/>
+      <view class="fill_text">直推人(编号)：</view>
+      <view class='fill_input'>
+        <input type="text" class='fill' name="parentCard" value='{{parentCard}}'  bindinput="Input_parentCard" />
+      </view>
+    </view>
+    <view class="section">
+      <input type="text" hidden="true" value="{{user_id}}" name="user_id"/>
+      <view class="fill_text">安置位(编号)：</view>
+      <view class='fill_input'>
+        <input type="text" class='fill' name="referenceName" value='{{referenceName}}'  bindinput="Input_referenceName" />
+      </view>
+    </view> -->
+    <view class="section">
+      <view class="fill_text">会员姓名：</view>
+      <view class='fill_input'>
+        <input type="text" class='fill' name="userNameC" value='{{userNameC}}'  bindinput="Input_userNameC" />
+      </view>
+    </view>
+    <view class="section">
+      <view class="fill_text">绑定手机号：</view>
+      <view class='fill_input'>
+       <input type="text" class='fill' name="mobile" value='{{mobile}}' bindinput="Input_Mobile"  />
+      </view>
+    </view>
+    <!-- <view class="section">
+      <view class="fill_text">手机验证码：</view>
+      <view class='fill_input' style="display:flex;flex-direction:rows;">
+       <input type="text" class="fill" style="width:130rpx;" name="certyCode" value='{{certyCode}}' bindinput="Input_CertyCode"  />
+       
+       <view class="searchcion" bindtap="send" >{{text}}</view>
+      </view>
+    </view> -->
+    <view class="section">
+      <view class="fill_text">登录密码：</view>
+      <view class='fill_input'>
+       <input type="text" class='fill' name="password" value='{{password}}' bindinput="Input_password"  />
+      </view>
+    </view>
+    <view class="section">
+      <view class="fill_text">支付密码：</view>
+      <view class='fill_input'>
+       <input type="text" class='fill' name="pwdPay" value='{{pwdPay}}' bindinput="Input_pwdPay"  />
+      </view>
+    </view>
+    <!-- <view class="section">
+      <view class="fill_text">开户行：</view>
+      <view class='fill_input'>
+       <input type="text" class='fill' name="bankName" value='{{bankName}}' bindinput="Input_BankName"  />
+      </view>
+    </view>
+    <view class="section">
+      <view class="fill_text">银行账号：</view>
+      <view class='fill_input'>
+       <input type="text" class='fill' name="bankNo" value='{{bankNo}}' bindinput="Input_BankNo"  />
+      </view>
+    </view> -->
+    <view>
+      <label></label>
+    </view>
+    <view class="btn-area">
+      <button formType="submit">确认注册</button>
+    </view>
+  </form>
+</view>

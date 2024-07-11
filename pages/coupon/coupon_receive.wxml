@@ -1,0 +1,25 @@
+<view class="orderDetails" >
+       <view class="quan">
+         <view class='qunLeft' style="background-image: url('{{bgUrl_qunLeft}}');background-size:100% 100%;">
+         <view class='title_1'>{{title_1}}</view>
+         <view class='title_2'>{{title_2}}</view>
+         </view>
+         
+         <view class='quanRight' style="background-image: url('{{bgUrl_qunRight}}');background-size:100% 100%;">
+           <view class='RTop'>
+              <view class="button_cpType" style='background-color: {{cpTypeBg}};'>{{quanType}}</view>
+              <view class='brief'>{{use_Place}}</view>
+              <view class="youke_1" style='background-color:{{cpTypeBg}};' wx:if="{{useStatus!='disabled'}}">{{useName}}</view>
+              <!-- <view class="youke_2" style='background-color:{{cpTypeBg}};' wx:if="{{useStatus!='未使用'}}">张小虎</view> -->
+              <!-- <navigator url="../coupon/coupon_Show?QuanId={{item.id}}">
+              <view class="button_Use" style='background-color:lightpink;' wx:if="{{item.quan_quanxian=='管理'&&item.useStatus=='未使用'}}">分配</view>
+              <view class="button_Use" style='background-color:lightpink;' wx:if="{{item.quan_quanxian=='管理'&&item.useStatus=='未使用'}}">使用</view>
+              </navigator> -->
+           </view>
+           <view class="quanNo">{{quanNo_name}}：{{quanNo}}</view>
+           <view class="dateLimited"  wx:if="{{item.useStatus=='未使用'}}">{{item.dateLimited_name}}：{{item.start_time}}-{{item.end_time}}</view>
+           <view class="dateLimited"  wx:if="{{item.useStatus!='未使用'}}">{{item.dateLimited_name}}：{{item.visitStart}}-{{item.visitEnd}}</view>
+         </view>
+       </view> 
+</view>	
+<button bindtap="bindReceiveQuan" class="login-btn" wx:if="{{useStatus=='disabled'}}">点击领取</button>

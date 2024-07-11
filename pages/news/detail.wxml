@@ -1,0 +1,43 @@
+<import src="../../wxParse/wxParse.wxml"/>
+<view class="page_detail">
+    <view class="detail">
+        <view class="detail_title">{{article.title}}</view>
+        <view class="article_desc">
+            <!--text class="article_source" wx:if="{{ article.tag }}">{{ article.tag }}</text-->
+            <text class="article_time">{{article.date }}</text>
+            <text class="article_author">{{article.author }}</text>
+            <view class="article_count">
+                <!--image class="article_icon" src="/images/icon-comt.png"></image>
+                <image class="article__icon" src="/images/icon-priaze.png"></image-->
+                <text>{{article.praise }}</text>
+            </view>
+            <view class='topImg'>
+               <image src="{{article.img}}" class="slide-image" />
+            </view>
+        </view>
+
+        <txv-video vid="{{article.vid}}" wx:if="{{article.vid}}"  playerid="txv1"></txv-video>
+        <view bindtap="play" class="user-block" data-index="{{video.name}}" wx:if="{{article.video_id!=video.name}}" wx:for="{{videos}}" wx:key="key"  wx:for-item="video">
+              <view wx:if="{{play==video.name}}">
+                  <video autoplay="true" bindfullscreenchange="fullscreenchange" class="video" controls="true" direction="" loop="true" src="{{video.url}}"></video>
+              </view>
+              <view style="position:relative;" wx:else>
+                  <image src="{{video.pic_url}}" style="width:750rpx;height:400rpx;"></image>
+                  <image class="video-play" src="http://api.lewon.net/web/statics/wxapp/images/video-play.png"></image>
+              </view>
+        </view>
+        <view class="wxParse">
+          <template is="wxParse" data="{{wxParseData:content.nodes}}"/>
+        </view>
+    </view>
+
+    <!-- 相关新闻 >
+    <view class="detail_relation">
+        <view class="relation_title">相关新闻</view>
+        <view class="articles" style="font-size:20rpx;">
+            TODO
+        </view>
+    </view-->
+    
+</view>
+<include src="../common/template/footer.wxml"/>

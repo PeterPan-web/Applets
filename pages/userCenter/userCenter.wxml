@@ -1,0 +1,221 @@
+<!--pages/userCenter/userCenter.wxml-->
+<view class="page">
+  <view class="userinfo userCard" wx:if="{{hasUserInfo}}">
+    <view class="userinfo-CardTop">
+      <view class='userinfo-left'>
+        <image class="userinfo-avatar" src="{{avatarUrl}}" background-size="cover"></image>
+      </view>
+      <view class='userinfo-middle'>
+        <span class="cardName">{{loginNamec}}</span>
+        <view class="userType" style="width:120rpx;">{{orderInfo.userType_Name}}</view>
+        <image class="userType_Ico" src="{{orderInfo.userType_Ico}}" background-size="cover"></image>
+      </view>
+      <view class="userinfo-right">
+        <navigator wx:if="{{cardNo.length==11&&loginNamec!='微信用户'}}" url="../out/out?sort=mark" hover-class="none">
+          <image src="/images/shareMark.png" style='width:35px;height:35px;'></image>
+        </navigator>
+      </view>
+    </view>
+    <view class='userinfo_CardNo'><text class="fl_l">No.{{cardNo}}</text></view>
+  </view>
+  <view class="goLoginView userCard" wx:else>
+    <span class="goLoginButton" bindtap="getUserProfile">去登录></span>
+  </view>
+  <!-- <view class="mobile" wx:if="{{!hasUserInfo}}">
+      <view class='mLeft'><span class="font_14 c3">授权获取微信昵称和头像</span></view>
+      <view class='mRight'>
+          <button class="button" bindtap="getUserProfile">完善资料</button>
+      </view>
+    </view> -->
+
+  <!-- <view class="mobile" wx:if="{{!hasMobile}}">
+      <view class='mLeft'><span class="font_14 c3">>>绑定手机号，同步全渠道订单和优惠券</span></view>
+      <view class='mRight'>
+          <button class="button" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">马上绑定</button>
+      </view>
+    </view> -->
+  <!-- <view class="mobile" wx:if="{{loginNamec=='微信用户'&&isLogin}}">
+    <view class='mLeft'><span class="font_14 c3"> </span></view>
+    <view class='mRight'>
+      <button class="button" bind:tap="bindRealName">实名认证</button>
+    </view>
+  </view> -->
+
+  <view class="upperDisplayArea">
+    <navigator class="AreaBtn"  url="{{item.url}}" hover-class="changestyle" wx:for="{{outSort}}" wx:key="index">
+      <view class="Areaview">
+        <text class="font_12">{{item.sortName}}<text style="color:red">({{item.sortValue}})</text></text>
+      </view>
+    </navigator>
+  </view>
+
+  <view class="sc mt10 df" wx:if="{{menu.length>0}}">
+    <navigator class=" df_1 tc" url="{{item.url}}" hover-class="none" wx:for="{{menu}}" wx:key="key">
+      <view>
+        <image src="{{item.pic}}"></image>
+      </view>
+      <text>{{item.menuName}}</text>
+    </navigator>
+  </view>
+  <!--订单详情-->
+  <view class="userbox">
+    <view class="menuTitle">
+      <span >商城订单</span>
+        <navigator class="fl_r c9 font_14 l_h20" hover-class="none" bindtap="checkLoginAndNavigate">查看全部订单 >
+      </navigator>
+    </view>
+  
+    <view class="sc df tc bte ">
+      <navigator class="sort" hover-class="none" bindtap="checkLoginAndNavigate1">
+        <view>
+          <image src="/images/dfk.png"></image>
+        </view>
+        <text class="font_12">待付款<text style="color:red">({{orderInfo.num_pay}})</text></text>
+      </navigator>
+  
+      <navigator class="sort" bindtap="checkLoginAndNavigate2" hover-class="none">
+        <view>
+          <image src="/images/dfh.png"></image>
+        </view>
+        <text class="font_12">待发货<text style="color:red">({{orderInfo.num_send}})</text></text>
+      </navigator>
+  
+      <navigator class="sort" bindtap="checkLoginAndNavigate3" hover-class="none">
+        <view>
+          <image src="/images/dpl.png"></image>
+        </view>
+        <text class="font_12">待收货<text style="color:red">({{orderInfo.num_rec}})</text></text>
+      </navigator>
+  
+      <navigator class="sort" bindtap="checkLoginAndNavigate4" hover-class="none">
+        <view>
+          <image src="/images/dsh.png"></image>
+        </view>
+        <text class="font_12">已完成<text style="color:red">({{orderInfo.num_finish}})</text></text>
+      </navigator>
+  
+      <!--navigator class="df_1" url="../order/shopOrder_List?currentTab=4" hover-class="none" >
+            <view><image src="/images/tksh.png"></image></view>
+            <text class="font_12">售后<text style="color:red">({{orderInfo.num_refund}})</text></text>
+        </navigator-->
+    </view>
+    <!--订单结束-->
+  
+  </view>
+
+  <view class="userCardpage" wx:if="{{isLogin}}">
+    <view class="userCardBottom" >
+      <view class="sort" wx:for="{{otherMenu}}" wx:for-item="sort" wx:key="key">
+        <navigator wx:if="{{sort.type=='nav'}}" url="{{sort.url}}" hover-class="none">
+          <image class="sortIcon" src="{{sort.pic}}"></image>
+          <view class="sortName">{{sort.menuName}}</view>
+        </navigator>
+        <view wx:elif="{{sort.type=='bindtap'}}">
+          <image class="sortIcon" src="{{sort.pic}}" bindtap="{{sort.action}}"></image>
+          <view class="sortName">{{sort.menuName}}</view>
+        </view>
+        <view wx:elif="{{sort.type=='call'}}">
+          <image class="sortIcon" src="{{sort.pic}}" bindtap="callGetPhone" data-getPhone='{{sort.action}}'></image>
+          <view class="sortName">{{sort.menuName}}</view>
+        </view>
+        <view wx:elif="{{sort.type=='contact'}}">
+          <button openType="contact" plain="true" session-from="baoming" style='margin-left:-25rpx;'>
+            <image class="sortIcon" src="{{sort.pic}}" style='margin-left:-25rpx;'></image>
+            <view class="sortName">{{sort.menuName}}</view>
+          </button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- <view>
+        <view class="mask" hidden="{{isLogin_}}">
+           <view class="mobile" style="display:flex;flex-direction:column">
+             <view class='login'><span>会员编号：</span>
+             <input type="text" class='fill' name="login_name" value='{{login_name}}' bindinput="Input_login_name"  /></view>
+             <view class='login'><span>登录密码：</span>
+             <input type="text" class='fill' name="login_pwd" password='true' value='{{login_pwd}}' bindinput="Input_login_pwd"  />
+             <view bindtap="forgetPWD">忘记密码？</view>
+             </view>
+             <view class='mRight' style="margin-top:20rpx;">
+             <button class="button" bindtap="doLogin">会员账号登录</button>
+             <button class="button_green" bindtap="getUserProfile">微信账号登录</button>
+             </view>
+           </view>
+        </view>
+        <view class="mask" wx:if="{{isForgetPWD}}">
+           <view class="mobile" style="display:flex;flex-direction:column">
+            <image class="closeImg_righttop" src="/images/close.png" bindtap="gotoLogin"></image>
+             <view class='login'><span style="width:150rpx;">会员编号：</span>
+             <input type="text" class='fill' name="login_name" value='{{login_name}}' bindinput="Input_login_name"  /></view>
+             <view class='login'><span style="width:150rpx;"> 验 证 码：</span>
+             <input type="text" class='fill' style="width:120rpx;" name="certyCode" value='{{certyCode}}' bindinput="Input_CertyCode" />
+             <view class="certyCode" bindtap="send" >{{text}}</view>
+             </view>
+             <view class='mRight' style="margin-top:20rpx;"><button class="button" bindtap="doGetPWD">确认找回</button>
+             </view>
+           </view>
+           
+        </view>
+    </view> -->
+
+  <view>
+    <view class="mask" hidden="{{!isRealName}}">
+      <view class="maskContent" style="display:flex;flex-direction:column">
+        <view style="display: flex;justify-content: flex-end">
+          <image class="closeImg_righttop" src="/images/close.png" bindtap="doHidden"></image>
+        </view>
+        <!-- <view class='login'><span>会员编号：</span>
+          <view type="text" class='fill' name="login_name">{{orderInfo.cardNo}}</view>
+        </view> -->
+        <!-- <view class='login'><span>手机号码：</span>
+          <text type="text" class='fill' name="login_pwd">{{userMobile}}</text>
+          <button class="button_mobile" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">绑定</button>
+        </view> -->
+        <!-- <view class='login'><span>真实姓名：</span>
+          <input type="text" class='fill' name="login_pwd" value='{{loginNamec}}' bindinput="Input_loginNamec" />
+        </view> -->
+        <!-- <view class='login'><span>身份证号：</span>
+          <input type="text" class='fill' name="login_pwd" value='{{IDNo}}' bindinput="Input_IDNo" />
+        </view> -->
+        <t-input label="会员编号：" value='{{orderInfo.cardNo}}' disabled></t-input>
+        <t-input label="手机号码：" placeholder="请输入手机号码" value="{{userMobile}}">
+          <t-button slot="suffix" theme="primary" size="extra-small" open-type="getPhoneNumber"
+            bindgetphonenumber="getPhoneNumber"> 绑定 </t-button>
+        </t-input>
+        <t-input label="真实姓名：" placeholder="请输入姓名" value='{{cachingName}}' bind:change="Input_loginNamec"></t-input>
+        <t-input label="身份证号：" placeholder="请输入身份证号" value='{{IDNo}}' bind:change="Input_IDNo"></t-input>
+        <view class='maskContentBtn'>
+          <t-button theme="primary" bindtap="doRealName"> 提交实名 </t-button>
+          <!-- <button class="button" bindtap="doRealName">提交实名</button> -->
+        </view>
+      </view>
+    </view>
+    <view class="mask" wx:if="{{isForgetPWD}}">
+      <view class="maskContent" style="display:flex;flex-direction:column">
+        <image class="closeImg_righttop" src="/images/close.png" bindtap="gotoLogin"></image>
+        <view class='login'><span style="width:150rpx;">会员编号：</span>
+          <input type="text" class='fill' name="login_name" value='{{login_name}}' bindinput="Input_login_name" />
+        </view>
+        <view class='login'><span style="width:150rpx;"> 验 证 码：</span>
+          <input type="text" class='fill' style="width:120rpx;" name="certyCode" value='{{certyCode}}'
+            bindinput="Input_CertyCode" />
+          <view class="certyCode" bindtap="send">{{text}}</view>
+        </view>
+        <view class='mRight' style="margin-top:20rpx;"><button class="button" bindtap="doGetPWD">确认找回</button>
+        </view>
+      </view>
+
+    </view>
+  </view>
+
+  <!--浮动菜单开始-->
+
+  <!-- <view class="grade-nav" openType="redirect">
+      <navigator url="../MemberShip/upgrade?userType_Name={{orderInfo.userType_Name}}" hover-class="none">
+        <image src="/images/upgrade.gif" ></image>
+      </navigator>
+</view> -->
+  <!--浮动菜单结束-->
+
+</view>
